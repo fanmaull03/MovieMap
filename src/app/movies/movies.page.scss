@@ -1,4 +1,4 @@
-/* CSS for the movie search and listing component */
+/* General styles for the component */
 ion-header {
   background-color: #222;
   color: #fff;
@@ -7,8 +7,6 @@ ion-header {
 ion-toolbar {
   --background: #222;
   --color: #fff;
-  display: flex;
-  justify-content: center;
 }
 
 ion-title {
@@ -16,106 +14,30 @@ ion-title {
   font-size: 1.5em;
 }
 
-ion-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  padding: 10px;
-}
-
-ion-input {
-  flex: 1;
-  margin-right: 10px;
-  padding: 10px;
-}
-
-ion-button {
-  flex-shrink: 0;
-  padding: 10px 20px;
-}
-
-ion-grid {
-  padding: 10px;
-}
-
-ion-card {
-  margin: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-ion-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-ion-card-header {
-  background-color: #f4f4f4;
-  padding: 10px;
+.welcome-banner {
   text-align: center;
-}
-/* src/app/app.component.scss atau halaman yang relevan */
-ion-button {
-  --background: #4caf50; /* Ganti warna latar belakang */
-  --color: white; /* Ganti warna teks */
-  --border-radius: 8px; /* Membuat tombol dengan sudut melengkung */
-  --padding-start: 20px; /* Padding kiri */
-  --padding-end: 20px; /* Padding kanan */
-  --font-weight: bold; /* Teks tebal */
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan */
+  background-color: #3a86ff;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-ion-button:hover {
-  --background: #45a049; /* Warna latar belakang saat hover */
-  --box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Bayangan saat hover */
-}
-/* src/app/app.component.scss atau file SCSS halaman yang relevan */
-.login-button {
-  --background: #4caf50; /* Latar belakang hijau untuk tombol login */
-  --color: white; /* Teks berwarna putih */
-  --border-radius: 8px; /* Sudut melengkung */
-  --padding-start: 20px; /* Padding kiri */
-  --padding-end: 20px; /* Padding kanan */
-  --font-weight: bold; /* Teks dengan huruf tebal */
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
-}
-
-/* Gaya hover untuk tombol login */
-.login-button:hover {
-  --background: #45a049; /* Latar belakang hijau gelap saat hover */
-  --box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan lebih jelas saat hover */
-}
-
-ion-card-title {
-  font-size: 1.2em;
+.welcome-banner h1 {
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin: 10px 0;
 }
 
-ion-card-subtitle {
-  font-size: 1em;
-  color: #555;
+.welcome-banner p {
+  font-size: 14px;
+  margin: 0;
 }
 
-ion-card-content {
-  padding: 10px;
-  background-color: #fff;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-ion-card-content ion-button {
-  width: 100%;
-  margin-top: 10px;
+.icon-film {
+  font-size: 50px;
+  margin-bottom: 10px;
 }
 
 .error-message {

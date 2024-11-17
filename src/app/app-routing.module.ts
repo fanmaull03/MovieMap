@@ -3,8 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: '', // Rute default (tampilan awal)
+    loadChildren: () => import('./movies/movies.module').then(m => m.MoviesPageModule)
   },
   {
     path: 'movie-detail/:id',
@@ -19,11 +19,18 @@ const routes: Routes = [
     loadChildren: () => import('./signup/signup.module').then(m => m.SignupPageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: 'movies',
+    loadChildren: () => import('./movies/movies.module').then(m => m.MoviesPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
+  },
+  {
+    path: 'lists',
+    loadChildren: () => import('./lists/lists.module').then(m => m.ListsPageModule)
   }
 ];
-
 
 @NgModule({
   imports: [

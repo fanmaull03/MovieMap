@@ -3,14 +3,22 @@
     <ion-title>Search Movies</ion-title>
     <ion-buttons slot="end">
       <!-- Tombol ke halaman login dengan kelas khusus -->
-      <ion-button [routerLink]="['/login']" class="login-button"
-        >Login</ion-button
-      >
+      <ion-button [routerLink]="['/login']" class="login-button">
+        Login
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- Banner Welcome -->
+  <div class="welcome-banner">
+    <ion-icon name="film-outline" class="icon-film"></ion-icon>
+    <h1>Welcome to MovieMap</h1>
+    <p>Discover, rate, and track your favorite movies.</p>
+  </div>
+
+  <!-- Search Bar -->
   <ion-item>
     <ion-input
       placeholder="Enter movie title..."
@@ -20,8 +28,10 @@
     <ion-button (click)="searchMovies()" expand="block">Search</ion-button>
   </ion-item>
 
+  <!-- Error Message -->
   <div *ngIf="error" class="error-message">{{ error }}</div>
 
+  <!-- Movie List -->
   <ion-grid *ngIf="movies.length > 0">
     <ion-row>
       <ion-col size="6" size-sm="4" size-md="3" *ngFor="let movie of movies">
