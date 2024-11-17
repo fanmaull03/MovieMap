@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Tombol Kembali -->
+      <ion-back-button defaultHref="/">Kembali</ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ movieDetails.Title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="movieDetails">
+    <img [src]="movieDetails.Poster" alt="{{ movieDetails.Title }}" />
+
+    <ion-card-header>
+      <ion-card-title>{{ movieDetails.Title }}</ion-card-title>
+      <ion-card-subtitle>{{ movieDetails.Year }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Genre:</strong> {{ movieDetails.Genre }}</p>
+      <p><strong>Director:</strong> {{ movieDetails.Director }}</p>
+      <p><strong>Actors:</strong> {{ movieDetails.Actors }}</p>
+      <p><strong>Plot:</strong> {{ movieDetails.Plot }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+</ion-content>

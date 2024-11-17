@@ -14,4 +14,9 @@ export class OmdbService {
   searchMovies(query: string): Observable<any> {
     return this.http.get(`${this.apiUrl}&s=${query}`);
   }
+  getMovieDetails(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}&i=${id}`);
+  }
+  
 }
+

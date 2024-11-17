@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OmdbService } from '../services/omdb.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -11,11 +12,12 @@ export class Tab1Page {
   movies: any[] = [];
   error: string = '';
 
-  constructor(private omdbService: OmdbService) {}
+  constructor(private omdbService: OmdbService, private router: Router) {}
 
   searchMovies() {
-    if (this.query.trim() === '') {
-      this.error = 'Please enter a search term!';
+    if (!this.query.trim()) {
+      this.error = 'Please enter a movie title.';
+      this.movies = [];
       return;
     }
 
@@ -29,10 +31,15 @@ export class Tab1Page {
           this.movies = [];
         }
       },
-      (error) => {
-        this.error = 'An error occurred while fetching movies.';
-        console.error(error);
+      (err) => {
+        this.error = 'Failed to fetch movies. Please try again later.';
+        console.error(err);
       }
     );
+  }
+
+  goToMovieDetail(movieId: string) {
+    console.log('Navigating to movie detail:', movieId); // Debug log
+    this.router.navigate(['/movie-detail', movieId]);
   }
 }
