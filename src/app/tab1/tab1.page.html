@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Search Movies</ion-title>
+    <ion-buttons slot="end">
+      <!-- Tombol ke halaman login dengan kelas khusus -->
+      <ion-button [routerLink]="['/login']" class="login-button">Login</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -27,7 +31,7 @@
           </ion-card-header>
           <ion-card-content>
             <ion-button expand="block" (click)="goToMovieDetail(movie.imdbID)">
-         Details
+              Details
             </ion-button>
           </ion-card-content>
         </ion-card>

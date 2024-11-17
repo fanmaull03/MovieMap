@@ -4,8 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',  // Mengarahkan ke halaman login
-    pathMatch: 'full'     // Pastikan cocok dengan path kosong sepenuhnya
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'movie-detail/:id',
