@@ -1,0 +1,107 @@
+/* tab2.page.scss */
+ion-header {
+    ion-toolbar {
+      --background: var(--ion-color-dark);
+      --color: var(--ion-color-light);
+    }
+    
+    ion-segment {
+      --background: var(--ion-color-dark);
+      padding: 0 16px;
+      
+      ion-segment-button {
+        --color: var(--ion-color-medium);
+        --color-checked: var(--ion-color-success);
+        --indicator-color: var(--ion-color-success);
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .reviews-container {
+    padding: 16px;
+    
+    .section-title {
+      color: var(--ion-color-light);
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  }
+  
+  .review-card {
+    background: var(--ion-color-dark-tint);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 16px;
+    
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      
+      .movie-info {
+        h3 {
+          color: var(--ion-color-light);
+          margin: 0;
+          font-size: 18px;
+          
+          .year {
+            color: var(--ion-color-medium);
+            margin-left: 8px;
+          }
+        }
+      }
+      
+      .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .reviewer-name {
+          color: var(--ion-color-medium);
+        }
+        
+        ion-avatar {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+    
+    .review-content {
+      display: flex;
+      gap: 16px;
+      
+      .poster-container {
+        flex: 0 0 100px;
+        
+        .movie-poster {
+          width: 100%;
+          border-radius: 4px;
+          margin-bottom: 8px;
+        }
+        
+        .rating {
+          .stars {
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+            
+            ion-icon {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      
+      .review-text {
+        color: var(--ion-color-light);
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+    }
+  }
