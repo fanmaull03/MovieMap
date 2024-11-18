@@ -11,6 +11,12 @@
     </ion-buttons>
   </ion-toolbar>
 
+  <nav class="nav-container">
+    <a [routerLink]="['/movies']" routerLinkActive="active" class="nav-link">SEARCH MOVIES</a>
+    <a [routerLink]="['/lists']" routerLinkActive="active" class="nav-link">LISTS</a>
+    <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link">PROFILE</a>
+  </nav>
+
   <ion-segment [(ngModel)]="selectedSegment" color="success">
     <ion-segment-button value="REVIEWS">
       <ion-label>ULASAN</ion-label>

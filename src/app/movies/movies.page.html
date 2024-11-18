@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Search Movies</ion-title>
+    <nav class="nav-container">
+      <a [routerLink]="['/movies']" routerLinkActive="active" class="nav-link">SEARCH MOVIES</a>
+      <a [routerLink]="['/lists']" routerLinkActive="active" class="nav-link">LISTS</a>
+      <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link">PROFILE</a>
+    </nav>
     <ion-buttons slot="end">
       <!-- Tombol ke halaman login dengan kelas khusus -->
       <ion-button [routerLink]="['/login']" class="login-button">
