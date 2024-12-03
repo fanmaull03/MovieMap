@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Activity</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="friends">
+      Friends
+    </ion-segment-button>
+    <ion-segment-button value="you">
+      You
+    </ion-segment-button>
+    <ion-segment-button value="incoming">
+      Incoming
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="segment">
+    <ng-container *ngSwitchCase="'friends'">
+      <!-- Konten aktivitas teman -->
+    </ng-container>
+    <ng-container *ngSwitchCase="'you'">
+      <!-- Konten aktivitas Anda -->
+    </ng-container>
+    <ng-container *ngSwitchCase="'incoming'">
+      <!-- Konten aktivitas masuk -->
+    </ng-container>
+  </div>
+</ion-content>
