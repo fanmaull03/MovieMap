@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="edit-profile-container">
+    <h2>Account Settings</h2>
+    <div class="edit-profile-form">
+      <form>
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input type="text" value="Rifqi Alrasy" disabled></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Given Name</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Family Name</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Email Address</ion-label>
+          <ion-input type="email" value="rifqi@example.com" disabled></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Location</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Bio</ion-label>
+          <ion-textarea rows="4"></ion-textarea>
+        </ion-item>
+      </form>
+    </div>
+
+    <h3>Favorite Films</h3>
+    <div class="favorite-films-section">
+      <div class="film-container">
+        <a [routerLink]="['/upload-photo']" class="film-box">
+          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
+        </a>
+        <a [routerLink]="['/upload-photo']" class="film-box">
+          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
+        </a>
+        <a [routerLink]="['/upload-photo']" class="film-box">
+          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
+        </a>
+        <a [routerLink]="['/upload-photo']" class="film-box">
+          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
+        </a>
+      </div>
+    </div>
+
+    <ion-button expand="block" color="primary" class="save-button">
+      Save Changes
+    </ion-button>
+  </div>
+</ion-content>

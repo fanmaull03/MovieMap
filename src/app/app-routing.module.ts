@@ -29,7 +29,11 @@ const routes: Routes = [
   {
     path: 'lists',
     loadChildren: () => import('./lists/lists.module').then(m => m.ListsPageModule)
+  },  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   }
+
 ];
 
 @NgModule({
