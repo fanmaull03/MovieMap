@@ -1,4 +1,3 @@
-// tab2.page.ts
 import { Component, OnInit } from '@angular/core';
 import { OmdbService } from '../services/omdb.service';
 import { Router } from '@angular/router';
@@ -20,11 +19,13 @@ interface Review {
   styleUrls: ['lists.page.scss']
 })
 export class ListsPage implements OnInit {
-  selectedSegment = 'REVIEWS';
+  selectedSegment = 'REVIEWS'; // Default segment
   reviews: Review[] = [];
+  filteredReviews: Review[] = []; // Untuk menampilkan hasil pencarian
+  searchQuery: string = ''; // Query pencarian
   error: string = '';
-  
-  // cara cari ID = cari filmnya > https://www.imdb.com/title/[ID Filmnya]/
+
+  // Mock data untuk ulasan
   mockReviews = [
     {
       imdbID: 'tt21064584', // ID untuk "The Iron Claw"
@@ -58,19 +59,21 @@ export class ListsPage implements OnInit {
     this.loadReviews();
   }
 
+  // Fungsi untuk memuat ulasan
   loadReviews() {
-    // Mengambil detail film untuk setiap review
     this.mockReviews.forEach(review => {
       this.omdbService.getMovieDetails(review.imdbID).subscribe(
         (movieData) => {
           if (movieData.Response === 'True') {
-            this.reviews.push({
+            const reviewData: Review = {
               ...review,
               movieTitle: movieData.Title,
               year: movieData.Year,
               posterUrl: movieData.Poster !== 'N/A' ? movieData.Poster : 'assets/placeholder-poster.jpg',
               imdbID: review.imdbID
-            });
+            };
+            this.reviews.push(reviewData);
+            this.filteredReviews = [...this.reviews]; // Set default tampilan
           }
         },
         (error) => {
@@ -81,10 +84,24 @@ export class ListsPage implements OnInit {
     });
   }
 
+  // Fungsi untuk menangani perubahan segment
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
   }
 
+  // Fungsi untuk pencarian berdasarkan judul film
+  searchContent() {
+    const query = this.searchQuery.trim().toLowerCase();
+    if (query === '') {
+      this.filteredReviews = [...this.reviews];
+    } else {
+      this.filteredReviews = this.reviews.filter(review =>
+        review.movieTitle.toLowerCase().includes(query)
+      );
+    }
+  }
+
+  // Navigasi ke detail film
   goToMovieDetail(movieId: string) {
     this.router.navigate(['/movie-detail', movieId]);
   }

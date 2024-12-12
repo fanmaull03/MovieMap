@@ -1,22 +1,10 @@
-<!-- tab2.page.html -->
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
-
-  <nav class="nav-container">
-    <a [routerLink]="['/movies']" routerLinkActive="active" class="nav-link">SEARCH MOVIES</a>
-    <a [routerLink]="['/lists']" routerLinkActive="active" class="nav-link">LISTS</a>
-    <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link">PROFILE</a>
-  </nav>
-
+  
   <ion-segment [(ngModel)]="selectedSegment" color="success">
     <ion-segment-button value="REVIEWS">
       <ion-label>ULASAN</ion-label>
@@ -30,15 +18,14 @@
   </ion-segment>
 </ion-header>
 
+
 <ion-content [fullscreen]="true" color="dark">
+
+  <!-- Konten Segment Reviews -->
   <div class="reviews-container" *ngIf="selectedSegment === 'REVIEWS'">
     <h2 class="section-title">Populer Minggu Ini</h2>
-    
-    <div class="error-message" *ngIf="error">
-      {{ error }}
-    </div>
-    
-    <div class="review-card" *ngFor="let review of reviews">
+    <div class="error-message" *ngIf="error">{{ error }}</div>
+    <div class="review-card" *ngFor="let review of filteredReviews">
       <div class="review-header">
         <div class="movie-info" (click)="goToMovieDetail(review.imdbID)">
           <h3>{{ review.movieTitle }} <span class="year">{{ review.year }}</span></h3>
@@ -46,27 +33,12 @@
         <div class="reviewer-info">
           <span class="reviewer-name">{{ review.reviewer }}</span>
           <ion-avatar>
-            <img [src]="review.reviewerAvatar" alt="reviewer avatar">
+            <img [src]="review.reviewerAvatar" alt="reviewer avatar" />
           </ion-avatar>
         </div>
       </div>
-
       <div class="review-content">
-        <div class="poster-container" (click)="goToMovieDetail(review.imdbID)">
-          <img [src]="review.posterUrl" 
-               [alt]="review.movieTitle + ' poster'" 
-               class="movie-poster"
-               (error)="review.posterUrl = 'assets/placeholder-poster.jpg'">
-          <div class="rating" *ngIf="review.rating">
-            <div class="stars">
-              <ion-icon 
-                *ngFor="let star of [1,2,3,4,5]" 
-                [name]="star <= review.rating ? 'star' : 'star-outline'"
-                color="success">
-              </ion-icon>
-            </div>
-          </div>
-        </div>
+        <img [src]="review.posterUrl" [alt]="review.movieTitle + ' poster'" class="movie-poster" />
         <p class="review-text">{{ review.reviewText }}</p>
       </div>
     </div>

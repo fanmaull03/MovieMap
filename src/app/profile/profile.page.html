@@ -1,15 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <nav class="nav-container">
-      <a [routerLink]="['/movies']" routerLinkActive="active" class="nav-link">SEARCH MOVIES</a>
-      <a [routerLink]="['/lists']" routerLinkActive="active" class="nav-link">LISTS</a>
-      <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link">PROFILE</a>
-    </nav>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/login']" class="login-button">
-        Login
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,40 +10,35 @@
       <ion-icon name="person-circle-outline"></ion-icon>
     </div>
     <h2 class="username">Rifqi Alrasy</h2>
-    <!-- Tambahkan link ke halaman Edit Profile -->
     <ion-button [routerLink]="['/edit-profile']" class="edit-button" fill="outline" size="small">
       Edit Profile
     </ion-button>
   </div>
 
-  <div class="profile-tabs">
-    <ion-segment value="profile">
-      <ion-segment-button value="profile">
-        Profile
-      </ion-segment-button>
-      <ion-segment-button [routerLink]="['/activity']" value="activity">
-        Activity
-      </ion-segment-button>
-      <ion-segment-button value="films">
-        Films
-      </ion-segment-button>
-      <ion-segment-button value="reviews">
-        Reviews
-      </ion-segment-button>
-      <ion-segment-button value="watchlist">
-        Watchlist
-      </ion-segment-button>
-    </ion-segment>
-  </div>
+  <ion-segment value="profile">
+    <ion-segment-button value="profile">
+      Profile
+    </ion-segment-button>
+    <ion-segment-button [routerLink]="['/activity']" value="activity">
+      Activity
+    </ion-segment-button>
+    <ion-segment-button value="films">
+      Films
+    </ion-segment-button>
+    <ion-segment-button value="reviews">
+      Reviews
+    </ion-segment-button>
+    <ion-segment-button [routerLink]="['/watchlist']" value="watchlist">
+      Watchlist
+    </ion-segment-button>
+  </ion-segment>
 
   <div class="content-section">
     <h3>Favorite Films</h3>
     <p>
       Don’t forget to select your 
-      <!-- Tambahkan link ke halaman Edit Profile -->
       <a [routerLink]="['/edit-profile']" class="edit-link">favorite films!</a>
     </p>
-
     <h3>Recent Activity</h3>
     <div class="empty-activity">No recent activity available.</div>
   </div>
