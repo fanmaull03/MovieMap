@@ -5,49 +5,68 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="signup-banner">
+    <ion-icon name="person-add-outline" class="icon-person"></ion-icon>
+    <h1>Create Your Account</h1>
+    <p>Join Movie Map and start exploring!</p>
+  </div>
+
   <ion-list>
     <!-- Input Nama Lengkap -->
     <ion-item>
-      <ion-input 
-        label="Name" 
-        labelPlacement="floating"
-        placeholder="Enter Name" 
-        [(ngModel)]="formData.name" 
-        type="text"> 
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-input label="Nama" labelPlacement="floating" placeholder="Enter your name"
+        [(ngModel)]="formData.name"
+        type="text">
       </ion-input>
     </ion-item>
 
     <!-- Input Email -->
     <ion-item>
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
       <ion-input 
-        label="Email" 
-        labelPlacement="floating"
-        placeholder="Enter Email" 
-        [(ngModel)]="formData.email" 
-        type="email"> 
-      </ion-input>
+      label="Email" 
+      labelPlacement="floating"
+      placeholder="Enter Email" 
+      [(ngModel)]="formData.email" 
+      type="email"> 
+    </ion-input>
     </ion-item>
 
     <!-- Input Password -->
     <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
       <ion-input 
-        label="Password" 
-        labelPlacement="floating"
-        placeholder="Enter Password" 
-        [(ngModel)]="formData.password" 
-        type="password"> 
-      </ion-input>
+      label="Password" 
+      labelPlacement="floating"
+      placeholder="Enter Password" 
+      [(ngModel)]="formData.password" 
+      type="password"> 
+    </ion-input>
+      <ion-icon
+        [name]="passwordIcon"
+        slot="end"
+        class="password-toggle"
+        (click)="togglePasswordVisibility()">
+      </ion-icon>
     </ion-item>
 
     <!-- Input Konfirmasi Password -->
     <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
       <ion-input 
-        label="Confirm Password" 
-        labelPlacement="floating"
-        placeholder="Confirm Password" 
-        [(ngModel)]="formData.confirmPassword" 
-        type="password"> 
-      </ion-input>
+      label="Confirm Password" 
+      labelPlacement="floating"
+      placeholder="Confirm Password" 
+      [(ngModel)]="formData.confirmPassword" 
+      type="password"> 
+    </ion-input>
+      <ion-icon
+        [name]="confirmPasswordIcon"
+        slot="end"
+        class="password-toggle"
+        (click)="toggleConfirmPasswordVisibility()">
+      </ion-icon>
     </ion-item>
 
     <!-- Tombol Sign Up -->
@@ -56,7 +75,7 @@
     </ion-button>
 
     <!-- Tombol Back -->
-    <ion-button fill="outline" expand="block" routerLink="/login">
+    <ion-button expand="block" routerLink="/login">
       Back to Login
     </ion-button>
   </ion-list>
