@@ -32,21 +32,11 @@ export class AuthService {
     return this.http.post(`${this.authURL()}/login`, data);
   }
 
-  // Get token from storage
-  async getToken(): Promise<string | null> {
-    if (this._storage) {
-      return await this._storage.get('token');
-    }
-    return null;
-  }
-
   // Check if user is authenticated
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
   }
-  
-
   // Logout
   async logout() {
     await this._storage?.remove('token');
