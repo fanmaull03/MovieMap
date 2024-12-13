@@ -8,26 +8,46 @@
   <ion-list>
     <!-- Input Nama Lengkap -->
     <ion-item>
-      <ion-input label="Name" labelPlacement="floating"
-      placeholder="Enter Name" [(ngModel)] ="formData.name" type="text"> </ion-input>
+      <ion-input 
+        label="Name" 
+        labelPlacement="floating"
+        placeholder="Enter Name" 
+        [(ngModel)]="formData.name" 
+        type="text"> 
+      </ion-input>
     </ion-item>
 
     <!-- Input Email -->
     <ion-item>
-      <ion-input label="Email" labelPlacement="floating"
-      placeholder="Enter Email" [(ngModel)]="formData.email" type="text"> </ion-input>
+      <ion-input 
+        label="Email" 
+        labelPlacement="floating"
+        placeholder="Enter Email" 
+        [(ngModel)]="formData.email" 
+        type="email"> 
+      </ion-input>
     </ion-item>
 
     <!-- Input Password -->
     <ion-item>
-      <ion-input label="Password" labelPlacement="floating"
-      placeholder="Enter Password" [(ngModel)]="formData.password" type="password"> </ion-input>
+      <ion-input 
+        label="Password" 
+        labelPlacement="floating"
+        placeholder="Enter Password" 
+        [(ngModel)]="formData.password" 
+        type="password"> 
+      </ion-input>
     </ion-item>
 
     <!-- Input Konfirmasi Password -->
     <ion-item>
-      <ion-input label="Confirm Password" labelPlacement="floating"
-      placeholder="Enter Password" type="password"> </ion-input>
+      <ion-input 
+        label="Confirm Password" 
+        labelPlacement="floating"
+        placeholder="Confirm Password" 
+        [(ngModel)]="formData.confirmPassword" 
+        type="password"> 
+      </ion-input>
     </ion-item>
 
     <!-- Tombol Sign Up -->
