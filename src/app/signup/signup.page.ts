@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,9 +15,7 @@ export class SignupPage {
     confirmPassword: ''
   };
 
-  apiUrl = 'https://rifqifauu.github.io/apimoviemap/register'; // URL API untuk registrasi
-
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   register() {
     // Validasi apakah password dan confirmPassword cocok
@@ -26,28 +24,15 @@ export class SignupPage {
       return;
     }
 
-    // Data yang akan dikirim ke API
-    const payload = {
-      name: this.formData.name,
-      email: this.formData.email,
-      password: this.formData.password
-    };
-
-    // Panggil API untuk registrasi
-    this.http.post(this.apiUrl, payload).subscribe(
+    // Panggil API untuk menyimpan data
+    this.authService.register(this.formData).subscribe(
       (response: any) => {
-        if (response && response.token) {
-          // Simpan token ke localStorage
-          localStorage.setItem('authToken', response.token);
-          alert('Registration successful!');
-          this.router.navigate(['/login']); // Pindah ke halaman login
-        } else {
-          alert('Registration failed: No token received!');
-        }
+        alert('Registration successful!');
+        this.router.navigate(['/login']); // Pindah ke halaman login
       },
       (error: any) => {
         console.error('Registration failed:', error);
-        alert('Registration failed! Please try again.');
+        alert('Registration failed!');
       }
     );
   }
