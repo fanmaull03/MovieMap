@@ -9,19 +9,19 @@
     <!-- Input Nama Lengkap -->
     <ion-item>
       <ion-input label="Name" labelPlacement="floating"
-      placeholder="Enter Name" type="text"> </ion-input>
+      placeholder="Enter Name" [(ngModel)] ="formData.name" type="text"> </ion-input>
     </ion-item>
 
     <!-- Input Email -->
     <ion-item>
       <ion-input label="Email" labelPlacement="floating"
-      placeholder="Enter Email" type="text"> </ion-input>
+      placeholder="Enter Email" [(ngModel)]="formData.email" type="text"> </ion-input>
     </ion-item>
 
     <!-- Input Password -->
     <ion-item>
       <ion-input label="Password" labelPlacement="floating"
-      placeholder="Enter Password" type="password"> </ion-input>
+      placeholder="Enter Password" [(ngModel)]="formData.password" type="password"> </ion-input>
     </ion-item>
 
     <!-- Input Konfirmasi Password -->
@@ -31,7 +31,7 @@
     </ion-item>
 
     <!-- Tombol Sign Up -->
-    <ion-button fill="solid" expand="block" routerLink="/home">
+    <ion-button fill="solid" expand="block" (click)="register()">
       Sign Up
     </ion-button>
 

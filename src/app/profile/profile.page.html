@@ -5,41 +5,51 @@
 </ion-header>
 
 <ion-content>
-  <div class="profile-header">
-    <div class="avatar">
-      <ion-icon name="person-circle-outline"></ion-icon>
+  <div *ngIf="userData; else notLoggedIn">
+    <div class="profile-header">
+      <div class="avatar">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+      <h2 class="username">{{ userData.name }}</h2> <!-- Display the user's name -->
+      <ion-button [routerLink]="['/edit-profile']" class="edit-button" fill="outline" size="small">
+        Edit Profile
+      </ion-button>
     </div>
-    <h2 class="username">Rifqi Alrasy</h2>
-    <ion-button [routerLink]="['/edit-profile']" class="edit-button" fill="outline" size="small">
-      Edit Profile
-    </ion-button>
+
+    <ion-segment value="profile">
+      <ion-segment-button value="profile">
+        Profile
+      </ion-segment-button>
+      <ion-segment-button [routerLink]="['/activity']" value="activity">
+        Activity
+      </ion-segment-button>
+      <ion-segment-button value="films">
+        Films
+      </ion-segment-button>
+      <ion-segment-button value="reviews">
+        Reviews
+      </ion-segment-button>
+      <ion-segment-button [routerLink]="['/watchlist']" value="watchlist">
+        Watchlist
+      </ion-segment-button>
+    </ion-segment>
+
+    <div class="content-section">
+      <h3>Favorite Films</h3>
+      <p>
+        Don’t forget to select your 
+        <a [routerLink]="['/edit-profile']" class="edit-link">favorite films!</a>
+      </p>
+      <h3>Recent Activity</h3>
+      <div class="empty-activity">No recent activity available.</div>
+    </div>
   </div>
 
-  <ion-segment value="profile">
-    <ion-segment-button value="profile">
-      Profile
-    </ion-segment-button>
-    <ion-segment-button [routerLink]="['/activity']" value="activity">
-      Activity
-    </ion-segment-button>
-    <ion-segment-button value="films">
-      Films
-    </ion-segment-button>
-    <ion-segment-button value="reviews">
-      Reviews
-    </ion-segment-button>
-    <ion-segment-button [routerLink]="['/watchlist']" value="watchlist">
-      Watchlist
-    </ion-segment-button>
-  </ion-segment>
-
-  <div class="content-section">
-    <h3>Favorite Films</h3>
-    <p>
-      Don’t forget to select your 
-      <a [routerLink]="['/edit-profile']" class="edit-link">favorite films!</a>
-    </p>
-    <h3>Recent Activity</h3>
-    <div class="empty-activity">No recent activity available.</div>
-  </div>
+  <ng-template #notLoggedIn>
+    <div class="not-logged-in">
+      <h2>Anda Belum Login</h2>
+      <p>Please log in to access your profile.</p>
+      <ion-button [routerLink]="['/login']" fill="solid">Login</ion-button> <!-- Button to navigate to login page -->
+    </div>
+  </ng-template>
 </ion-content>

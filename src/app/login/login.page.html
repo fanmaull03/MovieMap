@@ -9,22 +9,27 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <!-- Banner Welcome -->
-    <div class="welcome-banner">
-      <ion-icon name="film-outline" class="icon-film"></ion-icon>
-      <h1>Welcome to Movie Map</h1>
-      <p>Discover, rate, and track your favorite movies.</p>
-    </div>
-  <ion-list>
-    <ion-item>
-      <ion-input label="Email" labelPlacement="floating"
-      placeholder="Enter Email" type="text"> </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input label="Password" labelPlacement="floating"
-      placeholder="Enter Password" type="password"> </ion-input>
-    </ion-item>
-    <ion-button fill="solid" expand="block" routerLink="/profile">Login</ion-button>
-    <ion-button fill="solid" expand="block" routerLink="/signup">Sign Up</ion-button>
-  </ion-list>
+  <!-- Banner Welcome -->
+  <div class="welcome-banner">
+    <ion-icon name="film-outline" class="icon-film"></ion-icon>
+    <h1>Welcome to Movie Map</h1>
+    <p>Discover, rate, and track your favorite movies.</p>
+  </div>
+  
+  <form (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-input label="Email" labelPlacement="floating" 
+          placeholder="Enter Email" type="email" [(ngModel)]="email" name="email" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Password" labelPlacement="floating"
+          placeholder="Enter Password" type="password" [(ngModel)]="password" name="password" required>
+        </ion-input>
+      </ion-item>
+      <ion-button fill="solid" expand="block" type="submit">Login</ion-button>
+      <ion-button fill="solid" expand="block" routerLink="/signup">Sign Up</ion-button>
+    </ion-list>
+  </form>
 </ion-content>
