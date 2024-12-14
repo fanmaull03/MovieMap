@@ -35,3 +35,15 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* global.scss */
+body, ion-app {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Terapkan font Poppins secara global */
+ion-toolbar, ion-title, ion-label, ion-input, ion-button, h1, h2, h3, p {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  
