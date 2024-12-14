@@ -22,7 +22,7 @@ export class ProfilePage {
   }
 
   logout() {
-    const token = localStorage.getItem('token'); // Get the token from AuthService
+    const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` // Set the Authorization header
     });
@@ -32,6 +32,7 @@ export class ProfilePage {
         (response: HttpResponse<any>) => { // Explicitly define the type of response
           console.log('Logout successful', response);
           localStorage.removeItem('user'); // Clear user data from localStorage
+          localStorage.removeItem('token'); // Clear user data from localStorage
           this.router.navigate(['/login']); // Redirect to login page
         },
         (error: any) => { // Explicitly define the type of error

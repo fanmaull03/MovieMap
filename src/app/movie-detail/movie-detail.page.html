@@ -1,23 +1,24 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <!-- Tombol Kembali -->
-      <ion-back-button defaultHref="/" text="Back"></ion-back-button>
+      <ion-back-button defaultHref="/">Kembali</ion-back-button>
     </ion-buttons>
     <ion-title>{{ movieDetails.Title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="movieDetails">
-    <img [src]="movieDetails.Poster" alt="{{ movieDetails.Title }}" />
+  <!-- Movie Details Card -->
+  <ion-card *ngIf="movieDetails" class="movie-card">
+    <ion-img [src]="movieDetails.Poster" alt="{{ movieDetails.Title }}" class="poster-img"></ion-img>
 
-    <ion-card-header>
+    <ion-card-header class="movie-header">
       <ion-card-title>{{ movieDetails.Title }}</ion-card-title>
       <ion-card-subtitle>{{ movieDetails.Year }}</ion-card-subtitle>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content class="movie-details">
       <p><strong>Genre:</strong> {{ movieDetails.Genre }}</p>
       <p><strong>Director:</strong> {{ movieDetails.Director }}</p>
       <p><strong>Actors:</strong> {{ movieDetails.Actors }}</p>
@@ -25,5 +26,36 @@
     </ion-card-content>
   </ion-card>
 
-  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <!-- Reviews Section -->
+  <div class="reviews-section">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Reviews</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list *ngIf="reviews.length > 0" class="reviews-list">
+          <ion-item *ngFor="let review of reviews" class="review-item">
+            <ion-icon name="person-circle-outline" slot="start" color="tertiary"></ion-icon>
+            <ion-label>
+              <p><strong>User ID:</strong> {{ review.user_id }}</p>
+              <p><strong>Comment:</strong> {{ review.comment }}</p>
+              <p>
+                <strong>Rating:</strong> 
+                <ion-chip color="success" class="rating-chip">{{ review.rating }}</ion-chip>
+              </p>
+              <p><strong>Created At:</strong> {{ review.created_at | date:'medium' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <div *ngIf="reviews.length === 0" class="empty-reviews">
+          <ion-text color="medium">No reviews available.</ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    <ion-text color="danger">{{ error }}</ion-text>
+  </div>
 </ion-content>

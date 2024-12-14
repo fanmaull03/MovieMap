@@ -27,12 +27,11 @@ export class LoginPage {
           await firstValueFrom(
             this.authService.login({ email: this.email, password: this.password })
           );
-
         // Store token and user data locally
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
-
-        this.router.navigate(['/tabs/profile']);      } catch (error: any) {
+        this.router.navigate(['/tabs/profile']);     
+       } catch (error: any) {
         // Show error toast
         const toast = await this.toastController.create({
           message: 'Login failed! Please check your credentials.',
