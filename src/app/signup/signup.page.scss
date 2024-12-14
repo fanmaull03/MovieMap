@@ -1,0 +1,74 @@
+ion-content {
+    background: var(--theme-background); /* Background utama hitam */
+    color: var(--theme-text); /* Teks putih */
+  }
+  
+  .signup-banner {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--theme-card-background); /* Latar belakang gelap */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .signup-banner h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--theme-text); /* Putih */
+  }
+  
+  .signup-banner p {
+    color: var(--theme-primary); /* Emas */
+  }
+  
+  .icon-person {
+    font-size: 50px;
+    color: var(--theme-primary); /* Emas */
+    margin-bottom: 10px;
+  }
+  
+  ion-item {
+    --background: var(--theme-card-background); /* Latar belakang input gelap */
+    --color: var(--theme-text); /* Teks putih */
+    --border-color: var(--theme-muted-text); /* Border abu-abu */
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  ion-icon[slot="start"] {
+    color: var(--theme-primary); /* Ikon berwarna emas */
+  }
+  
+  ion-label {
+    color: var(--theme-text); /* Label berwarna putih */
+    font-size: 14px;
+  }
+  
+  ion-input {
+    --color: var(--theme-text); /* Teks putih */
+    --placeholder-color: var(--theme-muted-text); /* Placeholder abu-abu */
+  }
+  
+  .password-toggle {
+    color: var(--theme-primary); /* Ikon mata berwarna emas */
+    cursor: pointer;
+  }
+  
+  ion-button {
+    margin-top: 15px;
+    --background: var(--theme-primary); /* Tombol emas */
+    --color: var(--theme-text); /* Teks putih */
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  ion-button.routerLink {
+    --background: transparent; /* Tombol outline */
+    --border-color: var(--theme-primary); /* Outline berwarna emas */
+    --border-width: 3px;
+    --color: var(--theme-primary); /* Teks berwarna emas */
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,9 @@ export class SignupPage {
     confirmPassword: ''
   };
 
-  constructor(private router: Router, private authService: AuthService) {}
+  apiUrl = 'https://rifqifauu.github.io/apimoviemap/register'; // URL API untuk registrasi
+
+  constructor(private router: Router, private http: HttpClient) {}
 
   register() {
     // Validasi apakah password dan confirmPassword cocok
