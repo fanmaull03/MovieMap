@@ -18,17 +18,25 @@
   
   <form (ngSubmit)="onSubmit()">
     <ion-list>
+      <!-- Input Email -->
       <ion-item>
+        <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
         <ion-input label="Email" labelPlacement="floating" 
           placeholder="Enter Email" type="email" [(ngModel)]="email" name="email" required>
         </ion-input>
       </ion-item>
+
+      <!-- Input Password -->
       <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
         <ion-input label="Password" labelPlacement="floating"
           placeholder="Enter Password" type="password" [(ngModel)]="password" name="password" required>
         </ion-input>
       </ion-item>
+
+      <!-- Tombol Login -->
       <ion-button fill="solid" expand="block" type="submit">Login</ion-button>
+      <!-- Tombol Sign Up -->
       <ion-button fill="solid" expand="block" routerLink="/signup">Sign Up</ion-button>
     </ion-list>
   </form>

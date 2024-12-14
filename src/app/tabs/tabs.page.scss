@@ -1,0 +1,48 @@
+/* Ion Tabs - Styling */
+ion-tab-bar {
+    --background: #000; /* Latar belakang hitam */
+    border-top: 2px solid #333; /* Garis pembatas atas */
+    height: 60px; /* Tinggi tab bar */
+  }
+  
+  ion-tab-button {
+    color: #888; /* Warna default ikon dan teks */
+    transition: color 0.3s ease;
+  
+    &.tab-selected {
+      color: #ffcc00; /* Warna emas untuk tab aktif */
+    }
+  
+    ion-icon {
+      font-size: 22px; /* Ukuran ikon */
+      margin-bottom: 4px; /* Jarak ikon dan teks */
+    }
+  
+    ion-label {
+      font-size: 12px; /* Ukuran teks label */
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  
+    &:hover {
+      color: #ffcc00; /* Warna emas saat hover */
+    }
+  }
+  
+  /* Animasi Transisi Aktif */
+  ion-tab-button.tab-selected::after {
+    content: '';
+    display: block;
+    width: 50%; /* Garis aktif menyesuaikan panjang */
+    height: 3px;
+    background: #ffcc00; /* Warna emas */
+    border-radius: 2px;
+    margin: 4px auto 0 auto;
+  }
+  
+  /* Active State Styling */
+  ion-tab-button.tab-selected {
+    font-weight: bold; /* Teks lebih tebal untuk tab aktif */
+    color: #ffcc00;
+  }
+  

@@ -1,7 +1,8 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
 :root {
-    --ion-color-dark-tint: #383a3e;
-    --ion-color-success: #2dd36f;
-    --ion-color-medium: #92949c;
-  }
+  --theme-primary: #ffcc00; /* Emas */
+  --theme-secondary: #888; /* Abu-abu terang */
+  --theme-background: #000; /* Hitam */
+  --theme-card-background: #111; /* Hitam gelap */
+  --theme-text: #fff; /* Putih */
+  --theme-muted-text: #666; /* Abu-abu redup */
+}

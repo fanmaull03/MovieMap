@@ -1,135 +1,134 @@
+/* Global Background */
+ion-content {
+  --background: #000; /* Latar belakang hitam */
+  color: #fff; /* Teks putih */
+}
+
+/* Header Styling */
 ion-header {
   ion-toolbar {
-    --background: #222;
-    --color: #fff;
+    --background: #1a1a1a; /* Latar belakang gelap */
+    --color: #ffcc00; /* Warna teks header */
     padding: 0;
+    border-bottom: 2px solid #333;
+  }
 
-    .nav-container {
-      display: flex;
-      width: 100%;
-      height: 48px;
-      background: #222;
-      border-bottom: 1px solid #333;
-    }
-
-    .nav-link {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #888;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      position: relative;
-      transition: color 0.3s ease;
-
-      &.active {
-        color: #fff;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background-color: #0066ff; // Sesuaikan dengan warna yang Anda inginkan
-        }
-      }
-
-      &:hover {
-        color: #fff;
-      }
-    }
+  ion-title {
+    font-family: 'Cinzel', serif; /* Gaya font sinematik */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 20px;
   }
 }
 
+/* Welcome Banner */
 .welcome-banner {
+  background: linear-gradient(to bottom, #000000, #333333); /* Latar belakang sinematik */
+  color: #ffcc00;
+  padding: 32px 16px;
   text-align: center;
-  background: var(--ion-color-primary);
-  color: white;
-  padding: 24px 16px;
-  margin-bottom: 16px;
-  
+  border-bottom: 2px solid #ffcc00;
+
   h1 {
+    font-family: 'Oswald', sans-serif;
     font-size: 24px;
-    font-weight: 700;
-    margin: 0 0 8px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
   }
-  
+
   p {
     font-size: 16px;
     margin: 0;
-    opacity: 0.9;
+    opacity: 0.8;
+  }
+
+  .icon-film {
+    font-size: 48px;
+    color: #ffcc00;
+    margin-bottom: 16px;
   }
 }
 
-.search-container {
-  padding: 0 16px;
+/* Search Bar */
+ion-item {
+  --background: #000; /* Latar belakang hitam */
+  --color: #fff; /* Teks putih */
+  border-radius: 8px;
+  padding: 8px;
   margin-bottom: 16px;
-  
-  ion-searchbar {
-    --background: var(--ion-color-light);
-    --box-shadow: none;
-    --border-radius: 8px;
-    padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+ion-input {
+  --background: transparent;
+  --placeholder-color: #aaa; /* Placeholder abu-abu terang */
+  --color: #fff; /* Teks putih */
+  flex: 1; /* Memenuhi ruang kosong */
+}
+
+ion-button {
+  --color: #ffcc00; /* Warna ikon */
+  font-size: 20px;
+  padding: 0;
+  margin-left: 8px;
+}
+
+ion-icon {
+  font-size: 24px; /* Ukuran ikon pencarian */
+}
+
+/* Movie Cards */
+ion-card {
+  background: #1a1a1a; /* Latar belakang kartu */
+  color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: scale(1.05); /* Efek hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  img {
+    border-bottom: 2px solid #ffcc00; /* Aksen di bawah poster */
+  }
+
+  ion-card-header {
+    text-align: center;
+  }
+
+  ion-card-title {
+    font-weight: bold;
+    color: #ffcc00;
+    font-size: 16px;
+  }
+
+  ion-card-subtitle {
+    color: #999; /* Warna subtitle */
+    font-size: 14px;
   }
 }
 
+ion-card-content {
+  text-align: center;
+  ion-button {
+    --background: #ffcc00; /* Tombol emas */
+    --color: #000; /* Teks hitam */
+    font-weight: bold;
+    border-radius: 4px;
+  }
+}
+
+/* Error Message */
 .error-message {
-  color: var(--ion-color-danger);
+  background: #660000;
+  color: #ffcc00;
   text-align: center;
   padding: 16px;
+  border-radius: 8px;
   font-size: 14px;
+  margin: 16px;
 }
 
-ion-list {
-  background: transparent;
-  padding: 0 16px;
-  
-  ion-item {
-    --background: var(--ion-color-dark-tint);
-    --color: var(--ion-color-light);
-    margin-bottom: 8px;
-    border-radius: 8px;
-    --padding-start: 8px;
-    --padding-end: 8px;
-    --padding-top: 8px;
-    --padding-bottom: 8px;
-    
-    ion-thumbnail {
-      --size: 60px;
-      margin: 8px;
-      
-      .no-poster {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--ion-color-medium);
-        border-radius: 4px;
-        
-        ion-icon {
-          font-size: 24px;
-          color: var(--ion-color-light);
-        }
-      }
-    }
-    
-    ion-label {
-      h2 {
-        font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 4px;
-      }
-      
-      p {
-        color: var(--ion-color-medium);
-        font-size: 14px;
-      }
-    }
-  }
-}
