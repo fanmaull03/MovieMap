@@ -37,8 +37,30 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !!token;
   }
+
   // Logout
   async logout() {
     await this._storage?.remove('token');
+  }
+
+  // Get User Profile
+  getUserProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.get(`${this.authURL()}/profile`, { headers });
+  }
+
+  // Update User Profile
+  updateUserProfile(profileData: { location?: string, bio?: string }): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.patch(`${this.authURL()}/profile`, profileData, { headers });
   }
 }
