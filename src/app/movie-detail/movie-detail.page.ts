@@ -37,7 +37,7 @@ export class MovieDetailPage implements OnInit {
       );
     }
   }
-
+  
   getReviews(imdbID: string) {
     this.reviewService.getReview(imdbID).subscribe(
       (data) => {
