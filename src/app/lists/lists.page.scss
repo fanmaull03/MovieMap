@@ -1,94 +1,22 @@
-/* Global Theme Colors */
-:root {
-  --theme-primary: #ffcc00; /* Emas */
-  --theme-secondary: #888; /* Abu-abu terang */
-  --theme-background: #000; /* Hitam */
-  --theme-card-background: #111; /* Hitam gelap */
-  --theme-text: #fff; /* Putih */
-  --theme-muted-text: #666; /* Abu-abu redup */
-}
-
-/* Header Styling */
-ion-header {
-  ion-toolbar {
-    --background: var(--theme-background);
-    --color: var(--theme-text);
-
-    ion-buttons ion-menu-button {
-      color: var(--theme-primary); /* Warna emas untuk tombol menu */
-    }
-  }
-
-  /* Header Styling - Segment */
-ion-segment {
-  --background: var(--theme-background); /* Latar belakang hitam */
-  --indicator-color: var(--theme-primary) !important; /* Warna garis indikator emas */
-  --color: var(--theme-muted-text); /* Warna teks tombol segmen */
-  padding: 0 16px;
-
-  ion-segment-button {
-    --color: var(--theme-muted-text); /* Warna teks default */
-    --color-checked: var(--theme-primary); /* Warna teks aktif (emas) */
-    --indicator-color: var(--theme-primary); /* Warna garis indikator saat tab aktif */
-    font-weight: bold;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 8px 16px;
-
-    &:hover {
-      --color: var(--theme-primary); /* Warna emas saat hover */
-    }
-  }
-}
-
-ion-segment {
-  --indicator-color: #FFB800; /* Menambahkan warna emas langsung */
-}
-
-
-/* Segment Button - Styling for active state */
-ion-segment-button.ion-activated {
-  background: var(--theme-card-background); /* Latar belakang gelap untuk tab aktif */
-  border-radius: 8px;
-  color: var(--theme-primary); /* Warna teks emas untuk tab aktif */
-  padding: 10px 16px;
-
-  ion-label {
-    color: var(--theme-primary); /* Warna emas untuk teks tab aktif */
-  }
-}
-
-/* Untuk ikon aktif, bisa mengubah warna ikon jika ingin menyesuaikan */
-ion-segment-button.ion-activated ion-icon {
-  color: var(--theme-primary);
-}
-
-}
-
-/* Reviews Container */
-.reviews-container {
+.movies-container {
   padding: 16px;
-
-  .section-title {
-    color: var(--theme-primary);
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-align: center; /* Pusatkan judul */
-  }
 }
 
-/* Review Cards */
-.review-card {
+.movie-card {
   background: var(--theme-card-background);
   border: 1px solid var(--theme-secondary);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambah efek bayangan */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  .review-header {
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .movie-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -103,63 +31,62 @@ ion-segment-button.ion-activated ion-icon {
         .year {
           color: var(--theme-muted-text);
           margin-left: 8px;
+          font-size: 14px;
         }
       }
     }
 
-    .reviewer-info {
+    .rating {
       display: flex;
       align-items: center;
-      gap: 8px;
+      color: var(--theme-primary);
+      font-weight: bold;
 
-      .reviewer-name {
-        color: var(--theme-muted-text);
-        font-size: 14px;
-      }
-
-      ion-avatar {
-        width: 36px;
-        height: 36px;
-        border: 2px solid var(--theme-primary); /* Tambah border emas */
-        border-radius: 50%;
+      ion-icon {
+        margin-right: 4px;
       }
     }
   }
 
-  .review-content {
+  .movie-content {
     display: flex;
     gap: 16px;
 
     .movie-poster {
       width: 100px;
       border-radius: 8px;
-      border: 2px solid var(--theme-primary); /* Tambah border emas */
+      border: 2px solid var(--theme-primary);
+      object-fit: cover;
     }
 
-    .review-text {
+    .movie-overview {
       color: var(--theme-text);
-      font-size: 15px;
-      line-height: 1.6;
-      flex: 1; /* Isi ruang yang tersedia */
+      font-size: 14px;
+      line-height: 1.5;
+      flex: 1;
+      opacity: 0.8;
     }
   }
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-  .review-content {
-    flex-direction: column;
-
-    .movie-poster {
-      width: 80px;
-      margin: 0 auto 12px;
-    }
+.no-movies-message, .error-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  text-align: center;
+  color: var(--theme-muted-text);
+  
+  h2 {
+    margin-bottom: 10px;
+    color: var(--theme-primary);
   }
 }
 
-/* Animasi Hover */
-.review-card:hover {
-  transform: scale(1.02); /* Zoom sedikit */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+ion-searchbar {
+  --background: var(--theme-card-background);
+  --color: var(--theme-text);
+  --placeholder-color: var(--theme-muted-text);
+  --icon-color: var(--theme-primary);
 }
