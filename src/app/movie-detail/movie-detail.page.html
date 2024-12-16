@@ -31,11 +31,11 @@
       <ion-card-title>Submit Your Review</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
+      <ion-item class="movie-rate">
         <ion-label position="floating">Rating</ion-label>
         <ion-input [(ngModel)]="newReview.rating" type="number" min="1" max="5" required></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="movie-comment">
         <ion-label position="floating">Comment</ion-label>
         <ion-textarea [(ngModel)]="newReview.comment" rows="4" required></ion-textarea>
       </ion-item>
