@@ -11,6 +11,9 @@ ion-header {
     padding: 0;
     border-bottom: 2px solid #333;
   }
+  ion-back-button{
+    color: #fff;
+  }
 }
 
 
@@ -73,4 +76,15 @@ ion-button {
 ion-button.routerLink {
   --background: var(--theme-secondary); /* Tombol kedua abu-abu */
   --color: var(--theme-text);
+}
+
+.custom-toast {
+  --background: rgba(0, 0, 0, 0.85); /* Latar belakang semi-transparan */
+  --color: #ffffff; /* Warna teks putih */
+  --border-radius: 8px; /* Sudut membulat */
+  --padding-start: 16px; /* Padding kiri */
+  --padding-end: 16px; /* Padding kanan */
+  --font-size: 1rem; /* Ukuran font */
+  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Bayangan */
+  text-align: center; /* Pusatkan teks */
 }

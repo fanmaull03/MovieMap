@@ -97,3 +97,13 @@ ion-list {
     border-radius: 5px;
   }
   
+  .alert-success {
+    --background: #dfffd8;
+    --color: #2a7f0d;
+  }
+  
+  .alert-failure {
+    --background: #ffe6e6;
+    --color: #a10000;
+  }
+  

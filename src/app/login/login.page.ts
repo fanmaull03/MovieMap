@@ -19,35 +19,44 @@ export class LoginPage {
     private toastController: ToastController
   ) {}
 
+  // Fungsi untuk menampilkan toast alert
+  async showToast(message: string, color: string, duration: number = 2000) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      color: color,
+      position: 'top', // Posisi di atas layar
+      cssClass: 'custom-toast', // Tambahkan kelas CSS khusus untuk gaya
+    });
+    await toast.present();
+  }
+
   async onSubmit() {
     if (this.email && this.password) {
       try {
-        // Handle HTTP request using firstValueFrom for promise-like behavior
+        // Handle HTTP request menggunakan firstValueFrom
         const response: { token: string; user: { id: number; name: string; email: string } } =
           await firstValueFrom(
             this.authService.login({ email: this.email, password: this.password })
           );
-        // Store token and user data locally
+        // Simpan token dan data pengguna di local storage
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
-        this.router.navigate(['/tabs/profile']);     
-       } catch (error: any) {
-        // Show error toast
-        const toast = await this.toastController.create({
-          message: 'Login failed! Please check your credentials.',
-          duration: 2000,
-          color: 'danger',
-        });
-        toast.present();
+
+        // Tampilkan toast sukses
+        await this.showToast('Login successful!', 'success');
+
+        // Redirect ke halaman profile setelah toast tampil
+        setTimeout(() => {
+          this.router.navigate(['/tabs/profile']);
+        }, 2000); // Tunggu sampai toast selesai sebelum redirect
+      } catch (error: any) {
+        // Tampilkan toast error
+        await this.showToast('Login failed! Please check your credentials.', 'danger');
       }
     } else {
-      // Show warning toast for missing input
-      const toast = await this.toastController.create({
-        message: 'Email and password are required!',
-        duration: 2000,
-        color: 'warning',
-      });
-      toast.present();
+      // Tampilkan toast untuk input yang kosong
+      await this.showToast('Email and password are required!', 'warning');
     }
   }
 }

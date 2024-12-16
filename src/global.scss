@@ -52,6 +52,15 @@ ion-toolbar, ion-title, ion-label, ion-input, ion-button, h1, h2, h3, p {
     --ion-color-primary-shade: #e6b800; /* Shade warna emas */
     --ion-color-primary-tint: #ffd633; /* Tint warna emas */
   }
+
+  :root {
+    --theme-primary: #ffcc00; /* Emas */
+    --theme-secondary: #888; /* Abu-abu terang */
+    --theme-background: #000; /* Hitam */
+    --theme-card-background: #111; /* Hitam gelap */
+    --theme-text: #fff; /* Putih */
+    --theme-muted-text: #666; /* Abu-abu redup */
+  }
   
   ion-alert {
     --background: #1a1a1a; /* Latar belakang gelap */
