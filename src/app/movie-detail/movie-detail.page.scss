@@ -191,3 +191,16 @@ ion-card-content {
 .error-message ion-text {
   color: #ffcc00; /* Teks error dengan warna emas */
 }
+
+ion-alert {
+  --background: #1a1a1a; /* Latar belakang gelap */
+  --header-color: #ffcc00; /* Warna teks header emas */
+  --message-color: #fff; /* Warna teks pesan putih */
+  --button-background: #333; /* Latar belakang tombol gelap */
+  --button-color: #ffcc00; /* Warna teks tombol emas */
+  --button-hover-background: #444; /* Latar belakang tombol saat hover */
+  --button-hover-color: #fff; /* Warna teks tombol saat hover */
+  --button-border-radius: 8px; /* Sudut tombol melengkung */
+  --box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6); /* Shadow untuk alert */
+  border: 2px solid #ffcc00; /* Border emas */
+}

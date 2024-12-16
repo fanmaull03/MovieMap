@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage {
+  // Data yang diisi dari form
   formData = {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   };
 
   // Properti untuk kontrol visibilitas password
@@ -26,20 +27,15 @@ export class SignupPage {
 
   // Fungsi untuk toggle visibilitas password
   togglePasswordVisibility() {
-    this.passwordType =
-      this.passwordType === 'password' ? 'text' : 'password';
-    this.passwordIcon =
-      this.passwordIcon === 'eye-outline' ? 'eye-off-outline' : 'eye-outline';
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-outline' ? 'eye-off-outline' : 'eye-outline';
   }
 
   // Fungsi untuk toggle visibilitas confirm password
   toggleConfirmPasswordVisibility() {
-    this.confirmPasswordType =
-      this.confirmPasswordType === 'password' ? 'text' : 'password';
+    this.confirmPasswordType = this.confirmPasswordType === 'password' ? 'text' : 'password';
     this.confirmPasswordIcon =
-      this.confirmPasswordIcon === 'eye-outline'
-        ? 'eye-off-outline'
-        : 'eye-outline';
+      this.confirmPasswordIcon === 'eye-outline' ? 'eye-off-outline' : 'eye-outline';
   }
 
   // Fungsi register untuk validasi dan panggilan API
@@ -50,7 +46,7 @@ export class SignupPage {
       return;
     }
 
-    // Panggil API untuk menyimpan data
+    // Panggilan API ke AuthService
     this.authService.register(this.formData).subscribe(
       (response: any) => {
         alert('Registration successful!');
@@ -58,7 +54,7 @@ export class SignupPage {
       },
       (error: any) => {
         console.error('Registration failed:', error);
-        alert('Registration failed!');
+        alert('Registration failed! Please try again.');
       }
     );
   }

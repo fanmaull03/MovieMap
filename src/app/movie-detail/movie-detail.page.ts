@@ -121,7 +121,7 @@ export class MovieDetailPage implements OnInit {
         },
         (error: any) => {
           console.error('Error submitting review:', error);
-          this.presentAlert('Error', 'You have already submitted a review.');
+          this.presentAlert('Sorry', 'You have already submitted a review.');
           loading.dismiss();
         }
       );

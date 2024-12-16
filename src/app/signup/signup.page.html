@@ -15,8 +15,11 @@
     <!-- Input Nama Lengkap -->
     <ion-item>
       <ion-icon name="person-outline" slot="start"></ion-icon>
-      <ion-input label="Nama" labelPlacement="floating" placeholder="Enter your name"
-        [(ngModel)]="formData.name"
+      <ion-input 
+        label="Nama" 
+        labelPlacement="floating" 
+        placeholder="Enter your name"
+        [(ngModel)]="formData.name" 
         type="text">
       </ion-input>
     </ion-item>
@@ -25,29 +28,29 @@
     <ion-item>
       <ion-icon name="mail-outline" slot="start"></ion-icon>
       <ion-input 
-      label="Email" 
-      labelPlacement="floating"
-      placeholder="Enter Email" 
-      [(ngModel)]="formData.email" 
-      type="email"> 
-    </ion-input>
+        label="Email" 
+        labelPlacement="floating" 
+        placeholder="Enter your email"
+        [(ngModel)]="formData.email" 
+        type="email">
+      </ion-input>
     </ion-item>
 
     <!-- Input Password -->
     <ion-item>
       <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
       <ion-input 
-      label="Password" 
-      labelPlacement="floating"
-      placeholder="Enter Password" 
-      [(ngModel)]="formData.password" 
-      type="password"> 
-    </ion-input>
+        label="Password" 
+        labelPlacement="floating"
+        placeholder="Enter your password"
+        [type]="passwordType" 
+        [(ngModel)]="formData.password">
+      </ion-input>
       <ion-icon
         [name]="passwordIcon"
         slot="end"
         class="password-toggle"
-        (click)="togglePasswordVisibility()">
+        (click)="togglePasswordVisibility()"> <!-- Event untuk toggle -->
       </ion-icon>
     </ion-item>
 
@@ -55,17 +58,17 @@
     <ion-item>
       <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
       <ion-input 
-      label="Confirm Password" 
-      labelPlacement="floating"
-      placeholder="Confirm Password" 
-      [(ngModel)]="formData.confirmPassword" 
-      type="password"> 
-    </ion-input>
+        label="Confirm Password" 
+        labelPlacement="floating"
+        placeholder="Confirm your password"
+        [type]="confirmPasswordType"
+        [(ngModel)]="formData.confirmPassword">
+      </ion-input>
       <ion-icon
         [name]="confirmPasswordIcon"
         slot="end"
         class="password-toggle"
-        (click)="toggleConfirmPasswordVisibility()">
+        (click)="toggleConfirmPasswordVisibility()"> <!-- Event untuk toggle -->
       </ion-icon>
     </ion-item>
 
