@@ -2,7 +2,7 @@
 ion-content {
   --background: #000; /* Latar belakang hitam */
   color: #fff; /* Teks putih */
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Header Styling */
@@ -15,7 +15,7 @@ ion-header {
   }
 
   ion-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 20px;
@@ -30,13 +30,17 @@ ion-header {
 
 /* Welcome Banner */
 .welcome-banner {
-  background: linear-gradient(to bottom, #000000, #333333); /* Latar belakang sinematik */
+  background: linear-gradient(
+    to bottom,
+    #000000,
+    #333333
+  ); /* Latar belakang sinematik */
   padding: 32px 16px;
   text-align: center;
   border-bottom: 2px solid #ffcc00;
 
   h1 {
-    font-family: 'Poppins', sans-serif ;
+    font-family: "Poppins", sans-serif;
     font-size: 24px;
     margin-bottom: 8px;
     text-transform: uppercase;
@@ -67,6 +71,16 @@ ion-item {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+}
+
+/* Search Bar Sticky */
+.search-bar {
+  position: sticky;
+  top: 0px; /* Tinggi header */
+  z-index: 10; /* Pastikan search bar tetap di atas konten lainnya */
+  background: #000; /* Latar belakang yang sama dengan konten */
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Efek bayangan */
 }
 
 ion-input {
@@ -141,6 +155,10 @@ ion-card-content {
   margin: 16px;
 }
 
-ion-toolbar, ion-title, ion-label, ion-input, ion-button {
-  font-family: 'Poppins', sans-serif;
+ion-toolbar,
+ion-title,
+ion-label,
+ion-input,
+ion-button {
+  font-family: "Poppins", sans-serif;
 }

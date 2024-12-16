@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>MovieMap</ion-title>
+    <ion-title>
+      <a href="#" style="text-decoration: none"> MovieMap </a>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +17,7 @@
   </a>
 
   <!-- Search Bar -->
-  <ion-item>
+  <ion-item class="search-bar">
     <ion-input
       placeholder="Enter movie title..."
       [(ngModel)]="query"
