@@ -1,56 +1,142 @@
-/* CSS for the movie details component */
+/* Global Background */
+ion-content {
+  --background: #000; /* Latar belakang hitam */
+  color: #fff; /* Teks putih */
+}
+
+/* Header Styling */
 ion-header {
-    background-color: #222;
-    color: #fff;
-  }
-  
   ion-toolbar {
-    --background: #222;
-    --color: #fff;
+    --background: #1a1a1a; /* Toolbar gelap */
+    --color: #ffcc00; /* Warna teks emas */
+    border-bottom: 2px solid #333; /* Border aksen */
   }
-  
-  ion-card {
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  ion-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  ion-card-header {
-    background-color: #f4f4f4;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  ion-card-title {
-    font-size: 1.5em;
+
+  ion-title {
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #ffcc00;
   }
-  
-  ion-card-subtitle {
-    font-size: 1.2em;
-    color: #555;
+}
+
+/* Movie Card */
+.movie-card {
+  background: #1a1a1a; /* Latar belakang kartu */
+  color: #fff;
+  border: 1px solid #ffcc00;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.8);
   }
-  
-  ion-card-content {
-    padding: 20px;
-    background-color: #fff;
-  }
-  
-  ion-card-content p {
+}
+
+.poster-img {
+  width: 100%;
+  border-bottom: 2px solid #ffcc00;
+}
+
+.movie-header {
+  background-color: #333; /* Header kartu lebih gelap */
+  padding: 16px;
+  text-align: center;
+}
+
+ion-card-title {
+  color: #ffcc00; /* Warna emas */
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  color: #aaa; /* Warna abu-abu terang */
+}
+
+/* Movie Details Content */
+.movie-details {
+  background: #222;
+  padding: 20px;
+
+  p {
     margin: 10px 0;
+    font-size: 14px;
+
+    strong {
+      color: #ffcc00;
+    }
   }
-  
-  .error-message {
-    color: red;
+}
+
+/* Reviews Section */
+.reviews-section {
+  margin: 20px;
+
+  ion-card {
+    background: #1a1a1a;
+    border: 1px solid #ffcc00;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .reviews-list {
+    .review-item {
+      background: #222;
+      border-bottom: 1px solid #444;
+      padding: 10px;
+      border-radius: 4px;
+
+      ion-icon {
+        font-size: 28px;
+        color: #ffcc00; /* Ikon emas */
+      }
+
+      ion-label {
+        font-size: 14px;
+        line-height: 1.6;
+
+        p {
+          margin: 4px 0;
+        }
+      }
+
+      .rating-chip {
+        font-weight: bold;
+        background: #ffcc00;
+        color: #000;
+      }
+    }
+  }
+
+  .empty-reviews {
     text-align: center;
-    margin-top: 20px;
+    padding: 20px;
+    font-size: 14px;
+    color: #aaa;
   }
-  
+}
+
+/* Error Message */
+.error-message {
+  text-align: center;
+  background: #660000;
+  color: #ffcc00;
+  padding: 10px 20px;
+  border: 1px solid #ffcc00;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+/* Animasi Hover */
+ion-card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
