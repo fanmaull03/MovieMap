@@ -27,6 +27,11 @@
   <!-- Error Message -->
   <div *ngIf="error" class="error-message">{{ error }}</div>
 
+  <!-- Populer saat ini -->
+  <div>
+    <ion-title class="populer">Current Popular Movies</ion-title>
+  </div>
+
   <!-- Movie List -->
   <ion-grid *ngIf="movies.length > 0">
     <ion-row>
