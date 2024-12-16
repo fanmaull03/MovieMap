@@ -5,17 +5,6 @@
     </ion-buttons>
   </ion-toolbar>
   
-  <ion-segment [(ngModel)]="selectedSegment" color="success" style="--indicator-color: #ffcc00;">
-    <ion-segment-button value="REVIEWS">
-      <ion-label>ULASAN</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="LISTS">
-      <ion-label>LIST</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="JOURNAL">
-      <ion-label>ARTIKEL</ion-label>
-    </ion-segment-button>
-  </ion-segment>
 </ion-header>
 
 
@@ -23,7 +12,7 @@
 
   <!-- Konten Segment Reviews -->
   <div class="reviews-container" *ngIf="selectedSegment === 'REVIEWS'">
-    <h2 class="section-title">Populer Minggu Ini</h2>
+    <h2 class="section-title">Now Playing</h2>
     <div class="error-message" *ngIf="error">{{ error }}</div>
     <div class="review-card" *ngFor="let review of filteredReviews">
       <div class="review-header">
