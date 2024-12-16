@@ -24,7 +24,6 @@
     </ion-button>
   </ion-item>
   
-
   <!-- Error Message -->
   <div *ngIf="error" class="error-message">{{ error }}</div>
 
@@ -33,13 +32,14 @@
     <ion-row>
       <ion-col size="6" size-sm="4" size-md="3" *ngFor="let movie of movies">
         <ion-card>
-          <img [src]="movie.Poster" (click)="goToMovieDetail(movie.imdbID)" alt="{{ movie.Title }}" />
+          <!-- Menggunakan TMDB poster_path untuk gambar -->
+          <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="{{ movie.title }}" />
           <ion-card-header>
-            <ion-card-title>{{ movie.Title }}</ion-card-title>
-            <ion-card-subtitle>{{ movie.Year }}</ion-card-subtitle>
+            <ion-card-title>{{ movie.title }}</ion-card-title>
+            <ion-card-subtitle>{{ movie.release_date | date: 'yyyy' }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            <ion-button expand="block" (click)="goToMovieDetail(movie.imdbID)">
+            <ion-button expand="block" (click)="goToMovieDetail(movie.id)">
               Details
             </ion-button>
           </ion-card-content>
@@ -47,5 +47,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
 
+  <!-- No Movies Found Message -->
+  <div *ngIf="movies.length === 0 && !error">
+    <p>No movies found. Try searching again!</p>
+  </div>
+</ion-content>

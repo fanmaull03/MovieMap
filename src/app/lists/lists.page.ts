@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OmdbService } from '../services/omdb.service';
+import { TmdbService } from '../services/tmdb.service';
 import { Router } from '@angular/router';
 
 interface Review {
@@ -51,7 +51,7 @@ export class ListsPage implements OnInit {
   ];
 
   constructor(
-    private omdbService: OmdbService,
+    private tmdbService: TmdbService,
     private router: Router
   ) {}
 
@@ -62,7 +62,7 @@ export class ListsPage implements OnInit {
   // Fungsi untuk memuat ulasan
   loadReviews() {
     this.mockReviews.forEach(review => {
-      this.omdbService.getMovieDetails(review.imdbID).subscribe(
+      this.tmdbService.getMovieDetails(review.imdbID).subscribe(
         (movieData) => {
           if (movieData.Response === 'True') {
             const reviewData: Review = {
