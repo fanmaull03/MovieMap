@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  tmdbApiKey: 'c7582639e35af6d6ba14d0e467c23ea6' // Ganti dengan API key dari OMDB
+  omdbApiKey: 'c4519a67' // Ganti dengan API key dari OMDB
 
 };
 

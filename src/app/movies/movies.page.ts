@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TmdbService } from '../services/tmdb.service';
+import { OmdbService } from '../services/omdb.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,13 +12,7 @@ export class MoviesPage {
   movies: any[] = [];
   error: string = '';
 
-  constructor(private tmdbService: TmdbService, private router: Router) {}
-
-  ngOnInit() {
-    // Corrected: Calling the method with parentheses to execute it
-    this.getPopularMovies();
-    console.log('Loaded');
-  }
+  constructor(private omdbService: OmdbService, private router: Router) {}
 
   searchMovies() {
     if (!this.query.trim()) {
@@ -27,40 +21,19 @@ export class MoviesPage {
       return;
     }
 
-    this.tmdbService.searchMovies(this.query).subscribe(
+    this.omdbService.searchMovies(this.query).subscribe(
       (response) => {
-        // Memeriksa apakah respons berisi data film
-        if (response.results && response.results.length > 0) {
-          this.movies = response.results;
+        if (response.Response === 'True') {
+          this.movies = response.Search;
           this.error = '';
         } else {
-          this.error = 'No movies found.';
+          this.error = response.Error;
           this.movies = [];
         }
       },
       (err) => {
         this.error = 'Failed to fetch movies. Please try again later.';
         console.error(err);
-      }
-    );
-  }
-
-  getPopularMovies() {
-    console.log('Fetching popular movies...');
-    this.tmdbService.getPopularMovies().subscribe(
-      (response) => {
-        console.log('Response received:', response); // Debug log
-        if (response.results && response.results.length > 0) {
-          this.movies = response.results;
-          this.error = ''; // Clear error message if data is available
-        } else {
-          this.error = 'No movies found.';
-          this.movies = [];
-        }
-      },
-      (err) => {
-        console.error('Error fetching movies:', err);
-        this.error = 'Failed to fetch movies. Please try again later.';
       }
     );
   }
