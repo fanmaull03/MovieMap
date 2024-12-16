@@ -46,4 +46,11 @@ ion-toolbar, ion-title, ion-label, ion-input, ion-button, h1, h2, h3, p {
     font-family: 'Poppins', sans-serif;
   }
   
+  :root {
+    --ion-color-primary: #ffcc00; /* Warna emas */
+    --ion-color-primary-contrast: #000; /* Teks hitam */
+    --ion-color-primary-shade: #e6b800; /* Shade warna emas */
+    --ion-color-primary-tint: #ffd633; /* Tint warna emas */
+  }
+  
   
