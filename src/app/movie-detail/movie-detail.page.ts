@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OmdbService } from '../services/omdb.service';
+import { TmdbService } from '../services/tmdb.service';
 import { NavController } from '@ionic/angular';
 import { ReviewService } from '../services/review.service';
 
@@ -11,12 +11,12 @@ import { ReviewService } from '../services/review.service';
 })
 export class MovieDetailPage implements OnInit {
   movieDetails: any = {};
-  reviews: any[] = []; // Array untuk menyimpan review
+  reviews: any[] = [];
   error: string = '';
 
   constructor(
     private route: ActivatedRoute,
-    private omdbService: OmdbService,
+    private tmdbService: TmdbService,
     private reviewService: ReviewService,
     private navCtrl: NavController
   ) {}
@@ -24,12 +24,12 @@ export class MovieDetailPage implements OnInit {
   ngOnInit() {
     const imdbID = this.route.snapshot.paramMap.get('id');
     if (imdbID) {
-      this.omdbService.getMovieDetails(imdbID).subscribe(
+      this.tmdbService.getMovieDetails(imdbID).subscribe(
         (response) => {
           this.movieDetails = response;
           this.error = '';
           console.log(this.movieDetails);
-          this.getReviews(imdbID); // Panggil method untuk mendapatkan review
+          this.getReviews(imdbID);
         },
         (err) => {
           this.error = 'Failed to fetch movie details';
@@ -37,11 +37,11 @@ export class MovieDetailPage implements OnInit {
       );
     }
   }
-  
+
   getReviews(imdbID: string) {
     this.reviewService.getReview(imdbID).subscribe(
       (data) => {
-        this.reviews = data; // Simpan data review ke dalam variabel
+        this.reviews = data;
         console.log(this.reviews);
       },
       (error) => {
@@ -50,7 +50,21 @@ export class MovieDetailPage implements OnInit {
     );
   }
 
+  getGenres(): string {
+    return this.movieDetails.genres?.map((genre: any) => genre.name).join(', ') || 'N/A';
+  }
+
+  getProductionCompanies(): string {
+    return this.movieDetails.production_companies?.map((company: any) => company.name).join(', ') || 'N/A';
+  }
+
+  getRuntime(): string {
+    const hours = Math.floor(this.movieDetails.runtime / 60);
+    const minutes = this.movieDetails.runtime % 60;
+    return `${hours}h ${minutes}m`;
+  }
+
   goBack() {
-    this.navCtrl.back();  // Navigasi kembali ke halaman sebelumnya
+    this.navCtrl.back();
   }
 }

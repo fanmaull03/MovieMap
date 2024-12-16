@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OmdbService } from '../services/omdb.service';
+import { TmdbService } from '../services/tmdb.service';
 import { Router } from '@angular/router';
 
 interface Review {
@@ -51,7 +51,7 @@ export class ListsPage implements OnInit {
   ];
 
   constructor(
-    private omdbService: OmdbService,
+    private tmdbService: TmdbService,
     private router: Router
   ) {}
 
@@ -61,45 +61,9 @@ export class ListsPage implements OnInit {
 
   // Fungsi untuk memuat ulasan
   loadReviews() {
-    this.mockReviews.forEach(review => {
-      this.omdbService.getMovieDetails(review.imdbID).subscribe(
-        (movieData) => {
-          if (movieData.Response === 'True') {
-            const reviewData: Review = {
-              ...review,
-              movieTitle: movieData.Title,
-              year: movieData.Year,
-              posterUrl: movieData.Poster !== 'N/A' ? movieData.Poster : 'assets/placeholder-poster.jpg',
-              imdbID: review.imdbID
-            };
-            this.reviews.push(reviewData);
-            this.filteredReviews = [...this.reviews]; // Set default tampilan
-          }
-        },
-        (error) => {
-          this.error = 'Failed to fetch movie details';
-          console.error(error);
-        }
-      );
-    });
+return null;
   }
 
-  // Fungsi untuk menangani perubahan segment
-  segmentChanged(event: any) {
-    this.selectedSegment = event.detail.value;
-  }
-
-  // Fungsi untuk pencarian berdasarkan judul film
-  searchContent() {
-    const query = this.searchQuery.trim().toLowerCase();
-    if (query === '') {
-      this.filteredReviews = [...this.reviews];
-    } else {
-      this.filteredReviews = this.reviews.filter(review =>
-        review.movieTitle.toLowerCase().includes(query)
-      );
-    }
-  }
 
   // Navigasi ke detail film
   goToMovieDetail(movieId: string) {
