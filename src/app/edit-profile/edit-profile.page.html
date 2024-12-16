@@ -14,22 +14,32 @@
       <form>
         <ion-item>
           <ion-label position="stacked">Username</ion-label>
-          <ion-input type="text" [value]="userData.name" disabled>{{ userData.name }}</ion-input>
+          <ion-input type="text" value="Rifqi Alrasy" disabled></ion-input>
         </ion-item>
-        
+
+        <ion-item>
+          <ion-label position="stacked">Given Name</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Family Name</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
         <ion-item>
           <ion-label position="stacked">Email Address</ion-label>
-          <ion-input type="email" [value]="userData.email" disabled>{{ userData.email }}</ion-input>
+          <ion-input type="email" value="rifqi@example.com" disabled></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label position="stacked">Location</ion-label>
-          <ion-input type="text" [(ngModel)]="userData.location" name="location"></ion-input>
+          <ion-input type="text"></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label position="stacked">Bio</ion-label>
-          <ion-textarea rows="4" [(ngModel)]="userData.bio" name="bio"></ion-textarea>
+          <ion-textarea rows="4"></ion-textarea>
         </ion-item>
       </form>
     </div>
@@ -44,7 +54,7 @@
           <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
         </a>
         <a [routerLink]="['/upload-photo']" class="film-box">
-          <ion-icon name="add-circle-outline" class="add-icon"></ion-icons>
+          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
         </a>
         <a [routerLink]="['/upload-photo']" class="film-box">
           <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
@@ -52,8 +62,8 @@
       </div>
     </div>
 
-    <ion-button expand="block" color="primary" class="save-button" (click)="saveChanges()">
-      Update Profile
+    <ion-button expand="block" color="primary" class="save-button">
+      Save Changes
     </ion-button>
   </div>
 </ion-content>
