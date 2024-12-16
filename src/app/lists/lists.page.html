@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Now Playing</ion-title>
+    <ion-title>🎬 Now Playing</ion-title>
   </ion-toolbar>
-  
+
   <!-- Search Bar -->
   <ion-toolbar color="dark">
     <ion-searchbar 
-      placeholder="Search movies" 
+      placeholder="Search movies..." 
       [(ngModel)]="searchQuery" 
       (ionChange)="filterMovies()"
       color="medium"
@@ -19,8 +19,9 @@
 
 <ion-content [fullscreen]="true" color="dark">
   <!-- Error Message -->
-  <div class="error-message" *ngIf="error" color="danger">
-    {{ error }}
+  <div class="error-message" *ngIf="error">
+    <ion-icon name="alert-circle-outline" size="large" color="danger"></ion-icon>
+    <p>{{ error }}</p>
   </div>
 
   <!-- Refresh Control -->
@@ -38,7 +39,7 @@
     <div class="movie-card" *ngFor="let movie of filteredMovies" (click)="goToMovieDetail(movie.id)">
       <div class="movie-header">
         <div class="movie-info">
-          <h3>{{ movie.title }} <span class="year">{{ movie.year }}</span></h3>
+          <h3>{{ movie.title }} <span class="year">({{ movie.year }})</span></h3>
         </div>
         <div class="rating">
           <ion-icon name="star" color="warning"></ion-icon>
@@ -54,9 +55,8 @@
 
   <!-- No Movies Found Message -->
   <div *ngIf="filteredMovies.length === 0 && !error" class="no-movies-message">
-    <ion-text color="medium">
-      <h2>No movies found</h2>
-      <p>Try a different search query or check your connection</p>
-    </ion-text>
+    <ion-icon name="film-outline" size="large" color="medium"></ion-icon>
+    <h2>No movies found</h2>
+    <p>Try a different search query or check your connection</p>
   </div>
 </ion-content>
