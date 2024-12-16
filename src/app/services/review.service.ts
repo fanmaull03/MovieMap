@@ -12,8 +12,8 @@ export class ReviewService {
   reviewURL() {
     return 'http://localhost:8000/api/reviews';
   }
-  postReview(data: any): Observable<any> {
-    return this.http.post(`${this.reviewURL()}/`, data);
+  submitReview(reviewData: any): Observable<any> {
+    return this.http.post(`${this.reviewURL()}/`, reviewData);
   }
   getReview($id: any): Observable<any> {
     return this.http.get(`${this.reviewURL()}/` + $id);

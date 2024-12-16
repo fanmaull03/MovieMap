@@ -18,51 +18,51 @@ ion-header {
     text-transform: uppercase;
     font-size: 20px;
     letter-spacing: 1px;
-    color: #ffcc00;
+    color: #ffcc00; /* Teks emas pada judul */
   }
 }
 
 /* Movie Card */
 .movie-card {
-  background: #1a1a1a; /* Latar belakang kartu */
-  color: #fff;
-  border: 1px solid #ffcc00;
+  background: #1a1a1a; /* Latar belakang kartu gelap */
+  color: #fff; /* Teks putih */
+  border: 1px solid #ffcc00; /* Border emas */
   border-radius: 10px;
   overflow: hidden;
   margin: 20px;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: scale(1.02);
-    transition: transform 0.3s ease;
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.8);
   }
 }
 
 .poster-img {
   width: 100%;
-  border-bottom: 2px solid #ffcc00;
+  border-bottom: 2px solid #ffcc00; /* Border emas di bawah gambar poster */
 }
 
 .movie-header {
-  background-color: #333; /* Header kartu lebih gelap */
+  background-color: #333; /* Header lebih gelap */
   padding: 16px;
   text-align: center;
 }
 
 ion-card-title {
-  color: #ffcc00; /* Warna emas */
+  color: #ffcc00; /* Warna judul emas */
   font-size: 1.6em;
   font-weight: bold;
 }
 
 ion-card-subtitle {
-  color: #aaa; /* Warna abu-abu terang */
+  color: #aaa; /* Warna abu-abu untuk subtitle */
 }
 
 /* Movie Details Content */
 .movie-details {
-  background: #222;
+  background: #222; /* Latar belakang gelap untuk detail */
   padding: 20px;
 
   p {
@@ -70,73 +70,87 @@ ion-card-subtitle {
     font-size: 14px;
 
     strong {
-      color: #ffcc00;
+      color: #ffcc00; /* Warna emas pada teks tebal */
     }
   }
 }
 
 /* Reviews Section */
 .reviews-section {
-  margin: 20px;
-
-  ion-card {
-    background: #1a1a1a;
-    border: 1px solid #ffcc00;
-    border-radius: 8px;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  .reviews-list {
-    .review-item {
-      background: #222;
-      border-bottom: 1px solid #444;
-      padding: 10px;
-      border-radius: 4px;
-
-      ion-icon {
-        font-size: 28px;
-        color: #ffcc00; /* Ikon emas */
-      }
-
-      ion-label {
-        font-size: 14px;
-        line-height: 1.6;
-
-        p {
-          margin: 4px 0;
-        }
-      }
-
-      .rating-chip {
-        font-weight: bold;
-        background: #ffcc00;
-        color: #000;
-      }
-    }
-  }
-
-  .empty-reviews {
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-    color: #aaa;
-  }
+  margin-top: 20px;
+  background: #121212; /* Latar belakang lebih gelap untuk section reviews */
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #ffcc00; /* Border emas di sekitar section */
 }
 
-/* Error Message */
-.error-message {
+/* Review Item Styling */
+.review-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #333; /* Border bawah gelap */
+  transition: background-color 0.3s ease;
+  background: #1a1a1a; /* Latar belakang item review gelap */
+}
+
+.review-item:hover {
+  background-color: #333; /* Latar belakang lebih terang saat hover */
+}
+
+.review-item ion-avatar {
+  margin-right: 10px;
+}
+
+.review-item ion-label h2 {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #ffcc00; /* Nama pengguna berwarna emas */
+}
+
+.review-item ion-label p {
+  margin: 5px 0;
+  color: #bbb; /* Teks komentar lebih terang */
+}
+
+/* Empty Reviews */
+.empty-reviews {
+  padding: 15px;
   text-align: center;
-  background: #660000;
-  color: #ffcc00;
-  padding: 10px 20px;
-  border: 1px solid #ffcc00;
-  border-radius: 5px;
-  margin: 20px;
+  color: #aaa; /* Warna abu-abu untuk teks kosong */
 }
 
-/* Animasi Hover */
-ion-card:hover {
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
+/* Avatar Image */
+ion-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Review Title */
+ion-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffcc00; /* Judul review berwarna emas */
+}
+
+/* Card Content */
+ion-card-content {
+  padding: 10px;
+}
+
+/* Error Message Styling */
+.error-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #660000; /* Latar belakang merah gelap */
+  color: #ffcc00; /* Teks error dengan warna emas */
+  border: 1px solid #ffcc00; /* Border emas */
+  border-radius: 5px;
+  text-align: center;
+}
+
+.error-message ion-text {
+  color: #ffcc00; /* Teks error dengan warna emas */
 }

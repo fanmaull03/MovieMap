@@ -13,6 +13,13 @@ export class MovieDetailPage implements OnInit {
   movieDetails: any = {};
   reviews: any[] = [];
   error: string = '';
+  user: any = JSON.parse(localStorage.getItem('user') || '{}');  // Ensure user data is parsed
+  newReview = {
+    film_id: this.route.snapshot.paramMap.get('id'),
+    user_id: this.user?.id || null,  // Safely access user.id or set to null
+    rating: '',
+    comment: '',
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +38,7 @@ export class MovieDetailPage implements OnInit {
           console.log(this.movieDetails);
           this.getReviews(imdbID);
         },
-        (err) => {
+        (err: any) => {  // Add explicit 'any' type for error
           this.error = 'Failed to fetch movie details';
         }
       );
@@ -44,7 +51,7 @@ export class MovieDetailPage implements OnInit {
         this.reviews = data;
         console.log(this.reviews);
       },
-      (error) => {
+      (error: any) => {  // Add explicit 'any' type for error
         console.error('Error fetching reviews:', error);
       }
     );
@@ -66,5 +73,22 @@ export class MovieDetailPage implements OnInit {
 
   goBack() {
     this.navCtrl.back();
+  }
+
+  submitReview() {
+    // Ensure film_id is a string and handle the submit review logic
+    if (this.newReview.film_id) {
+      this.reviewService['submitReview'](this.newReview).subscribe(
+        (response: any) => {  // Add explicit 'any' type for response
+          console.log('Review submitted successfully:', response);
+          
+        },
+        (error: any) => {  // Add explicit 'any' type for error
+          console.error('Error submitting review:', error);
+        }
+      );
+    } else {
+      console.error('Film ID is missing or invalid');
+    }
   }
 }
