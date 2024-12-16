@@ -12,34 +12,56 @@
           <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
         </div>
         <h2 class="username">{{ userData.name }}</h2>
-        <ion-button [routerLink]="['/edit-profile']" class="edit-button" fill="outline" size="small">
+        <ion-button
+          [routerLink]="['/edit-profile']"
+          class="edit-button"
+          fill="outline"
+          size="small"
+        >
           Edit Profile
         </ion-button>
       </div>
 
       <ion-segment value="profile" class="profile-segment">
-        <ion-segment-button value="profile">
+        <ion-segment-button value="profile" content-id="profile">
           Profile
         </ion-segment-button>
-        <ion-segment-button value="reviews">
+        <ion-segment-button value="reviews" content-id="reviews">
           Reviews
         </ion-segment-button>
-        <ion-segment-button [routerLink]="['/watchlist']" value="watchlist">
+        <ion-segment-button value="watchlist" content-id="watchlist">
           Watchlist
         </ion-segment-button>
       </ion-segment>
+      <ion-segment-view>
+        <ion-segment-content id="profile">
+          <ion-button
+            (click)="logout()"
+            color="danger"
+            expand="full"
+            class="logout-button"
+            >Logout</ion-button
+          >
 
-      <ion-button (click)="logout()" color="danger" expand="full" class="logout-button">Logout</ion-button>
-
-      <div class="content-section">
-        <h3>Favorite Films</h3>
-        <p>
-          Don’t forget to select your 
-          <a [routerLink]="['/edit-profile']" class="edit-link">favorite films!</a>
-        </p>
-        <h3>Recent Activity</h3>
-        <div class="empty-activity">No recent activity available.</div>
-      </div>
+          <div class="content-section">
+            <h3>Favorite Films</h3>
+            <p>
+              Don’t forget to select your
+              <a [routerLink]="['/edit-profile']" class="edit-link"
+                >favorite films!</a
+              >
+            </p>
+            <h3>Recent Activity</h3>
+            <div class="empty-activity">No recent activity available.</div>
+          </div>
+        </ion-segment-content>
+        <ion-segment-content id="reviews"
+          >TODO: BIKIN HALAMAN REVIEWS DISINI</ion-segment-content
+        >
+        <ion-segment-content id="watchlist"
+          >TODO: BIKIN WATCHLIST DISINI</ion-segment-content
+        >
+      </ion-segment-view>
     </ion-card>
   </div>
 
