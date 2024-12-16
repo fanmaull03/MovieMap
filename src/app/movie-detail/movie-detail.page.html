@@ -37,7 +37,7 @@
           <ion-item *ngFor="let review of reviews" class="review-item">
             <ion-icon name="person-circle-outline" slot="start" color="tertiary"></ion-icon>
             <ion-label>
-              <p><strong>User ID:</strong> {{ review.user_id }}</p>
+              <h2><strong> {{ review.user.name }}</strong></h2>
               <p><strong>Comment:</strong> {{ review.comment }}</p>
               <p>
                 <strong>Rating:</strong> 

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ReviewService {
+  [x: string]: any;
   constructor(private http: HttpClient) {
   }
   reviewURL() {
