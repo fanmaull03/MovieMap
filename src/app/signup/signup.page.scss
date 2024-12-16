@@ -1,7 +1,31 @@
+:root {
+  --theme-primary: #ffcc00; /* Emas */
+  --theme-secondary: #888; /* Abu-abu terang */
+  --theme-background: #000; /* Hitam */
+  --theme-card-background: #111; /* Hitam gelap */
+  --theme-text: #fff; /* Putih */
+  --theme-muted-text: #666; /* Abu-abu redup */
+}
+
 ion-content {
-    background: var(--theme-background); /* Background utama hitam */
-    color: var(--theme-text); /* Teks putih */
+  --background: #000; /* Latar belakang hitam */
+  color: #fff; /* Teks putih */
+  font-family: 'Poppins', sans-serif;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #1a1a1a; /* Latar belakang gelap */
+    --color: #ffcc00; /* Warna teks header */
+    padding: 0;
+    border-bottom: 2px solid #333;
   }
+}
+
+ion-list {
+  --background: #000; /* Latar belakang hitam */
+
+}
   
   .signup-banner {
     text-align: center;
@@ -29,7 +53,7 @@ ion-content {
   }
   
   ion-item {
-    --background: var(--theme-card-background); /* Latar belakang input gelap */
+    --background: #000; /* Latar belakang input gelap */
     --color: var(--theme-text); /* Teks putih */
     --border-color: var(--theme-muted-text); /* Border abu-abu */
     border-radius: 8px;
@@ -46,6 +70,7 @@ ion-content {
   }
   
   ion-input {
+    background-color: #000;
     --color: var(--theme-text); /* Teks putih */
     --placeholder-color: var(--theme-muted-text); /* Placeholder abu-abu */
   }

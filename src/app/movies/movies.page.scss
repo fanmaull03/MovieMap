@@ -26,7 +26,6 @@ ion-header {
 /* Welcome Banner */
 .welcome-banner {
   background: linear-gradient(to bottom, #000000, #333333); /* Latar belakang sinematik */
-  color: #ffcc00;
   padding: 32px 16px;
   text-align: center;
   border-bottom: 2px solid #ffcc00;
@@ -37,12 +36,14 @@ ion-header {
     margin-bottom: 8px;
     text-transform: uppercase;
     font-weight: 700;
+    color: #ffcc00;
   }
 
   p {
     font-size: 16px;
     margin: 0;
     opacity: 0.8;
+    color: #fff;
   }
 
   .icon-film {

@@ -6,6 +6,21 @@
   border-bottom: 1px solid #333;
 }
 
+ion-content {
+  --background: #000; /* Latar belakang hitam */
+  color: #fff; /* Teks putih */
+  font-family: 'Poppins', sans-serif;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #1a1a1a; /* Latar belakang gelap */
+    --color: #ffcc00; /* Warna teks header */
+    padding: 0;
+    border-bottom: 2px solid #333;
+  }
+}
+
 .avatar {
   margin: 0 auto;
   font-size: 72px;

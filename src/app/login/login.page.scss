@@ -1,6 +1,16 @@
 ion-content {
-  background: var(--theme-background); /* Background utama hitam */
-  color: var(--theme-text); /* Teks putih */
+  --background: #000; /* Latar belakang hitam */
+  color: #fff; /* Teks putih */
+  font-family: 'Poppins', sans-serif;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #1a1a1a; /* Latar belakang gelap */
+    --color: #ffcc00; /* Warna teks header */
+    padding: 0;
+    border-bottom: 2px solid #333;
+  }
 }
 
 
