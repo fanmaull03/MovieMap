@@ -13,7 +13,7 @@ ion-header {
   }
 
   ion-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 20px;
@@ -27,35 +27,56 @@ ion-header {
     color: #fff;
   }
 
-  ion-label{
+  ion-label {
     color: #ffcc00;
   }
   --background: #1a1a1a; /* Toolbar gelap */
-   /* Warna teks emas */
+  /* Warna teks emas */
   border-bottom: 2px solid #333; /* Border aksen */
-  
 }
 
-.movie-comment{
+/* Star Rating Styling */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.star-icon {
+  font-size: 24px;
+  color: #ffcc00; /* Warna emas */
+  margin: 0 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &.filled {
+    color: #ffcc00; /* Warna bintang terisi */
+  }
+
+  &:hover {
+    transform: scale(1.2); /* Efek zoom saat hover */
+  }
+}
+
+.movie-comment {
   ion-textarea {
     color: #fff;
   }
 
-  ion-label{
+  ion-label {
     color: #ffcc00;
   }
   --background: #1a1a1a; /* Toolbar gelap */
-   /* Warna teks emas */
+  /* Warna teks emas */
   border-bottom: 2px solid #333; /* Border aksen */
-  
 }
 
 ion-card {
-  --background:var(--background);
+  --background: var(--background);
 }
 
-ion-card-content{
-  --background:#1a1a1a;
+ion-card-content {
+  --background: #1a1a1a;
 }
 
 /* Movie Card */
@@ -137,7 +158,6 @@ ion-card-subtitle {
 .review-item ion-avatar {
   margin-right: 10px;
 }
-
 
 .review-item ion-label h2 {
   font-weight: bold;

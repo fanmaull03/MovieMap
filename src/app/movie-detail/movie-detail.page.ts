@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../services/tmdb.service';
-import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import {
+  NavController,
+  AlertController,
+  LoadingController,
+} from '@ionic/angular';
 import { ReviewService } from '../services/review.service';
 
 @Component({
@@ -18,9 +22,10 @@ export class MovieDetailPage implements OnInit {
   newReview = {
     film_id: this.route.snapshot.paramMap.get('id'),
     user_id: this.user?.id || null, // Safely access user.id or set to null
-    rating: '',
+    rating: 0, // Ubah tipe rating menjadi angka untuk bintang
     comment: '',
   };
+  stars = [1, 2, 3, 4, 5]; // Untuk sistem bintang
 
   constructor(
     private route: ActivatedRoute,
@@ -73,11 +78,18 @@ export class MovieDetailPage implements OnInit {
   }
 
   getGenres(): string {
-    return this.movieDetails.genres?.map((genre: any) => genre.name).join(', ') || 'N/A';
+    return (
+      this.movieDetails.genres?.map((genre: any) => genre.name).join(', ') ||
+      'N/A'
+    );
   }
 
   getProductionCompanies(): string {
-    return this.movieDetails.production_companies?.map((company: any) => company.name).join(', ') || 'N/A';
+    return (
+      this.movieDetails.production_companies
+        ?.map((company: any) => company.name)
+        .join(', ') || 'N/A'
+    );
   }
 
   getRuntime(): string {
@@ -99,9 +111,17 @@ export class MovieDetailPage implements OnInit {
     await alert.present();
   }
 
+  setRating(rating: number) {
+    this.newReview.rating = rating;
+  }
+
+  getStarArray(rating: number): number[] {
+    return Array(rating).fill(0); // Membuat array sebanyak jumlah rating
+  }
+
   async submitReview() {
-    if (!this.newReview.rating || !this.newReview.comment) {
-      this.presentAlert('Error', 'Please fill in all fields.');
+    if (!this.newReview.rating || !this.newReview.comment.trim()) {
+      this.presentAlert('Error', 'Please provide a rating and a comment.');
       return;
     }
 
@@ -113,10 +133,13 @@ export class MovieDetailPage implements OnInit {
     if (this.newReview.film_id) {
       this.reviewService.submitReview(this.newReview).subscribe(
         (response: any) => {
-          this.presentAlert('Success', 'Your review has been submitted successfully.');
+          this.presentAlert(
+            'Success',
+            'Your review has been submitted successfully.'
+          );
           this.getReviews(this.newReview.film_id!); // Refresh reviews
-          this.newReview.rating = '';
-          this.newReview.comment = '';
+          this.newReview.rating = 0; // Reset rating to 0
+          this.newReview.comment = ''; // Reset comment
           loading.dismiss();
         },
         (error: any) => {
