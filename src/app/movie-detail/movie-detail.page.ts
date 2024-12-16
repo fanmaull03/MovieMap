@@ -81,10 +81,10 @@ export class MovieDetailPage implements OnInit {
       this.reviewService['submitReview'](this.newReview).subscribe(
         (response: any) => {  // Add explicit 'any' type for response
           console.log('Review submitted successfully:', response);
-          
         },
         (error: any) => {  // Add explicit 'any' type for error
           console.error('Error submitting review:', error);
+          alert('Anda Sudah Melakukan Review')
         }
       );
     } else {
