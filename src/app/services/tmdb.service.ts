@@ -29,4 +29,10 @@ export class TmdbService {
     const url = `${this.apiUrl}/movie/popular?api_key=${this.apiKey}`;
     return this.http.get<any>(url);
   }
+
+  // Fungsi untuk mendapatkan film yang sedang tayang (now playing)
+  getNowPlayingMovies(): Observable<any> {
+    const url = `${this.apiUrl}/movie/now_playing?api_key=${this.apiKey}&page=1`;
+    return this.http.get<any>(url);
+  }
 }

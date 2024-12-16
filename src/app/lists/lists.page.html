@@ -3,33 +3,60 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-title>Now Playing</ion-title>
   </ion-toolbar>
   
+  <!-- Search Bar -->
+  <ion-toolbar color="dark">
+    <ion-searchbar 
+      placeholder="Search movies" 
+      [(ngModel)]="searchQuery" 
+      (ionChange)="filterMovies()"
+      color="medium"
+    ></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true" color="dark">
+  <!-- Error Message -->
+  <div class="error-message" *ngIf="error" color="danger">
+    {{ error }}
+  </div>
 
-  <!-- Konten Segment Reviews -->
-  <div class="reviews-container" *ngIf="selectedSegment === 'REVIEWS'">
-    <h2 class="section-title">Now Playing</h2>
-    <div class="error-message" *ngIf="error">{{ error }}</div>
-    <div class="review-card" *ngFor="let review of filteredReviews">
-      <div class="review-header">
-        <div class="movie-info" (click)="goToMovieDetail(review.imdbID)">
-          <h3>{{ review.movieTitle }} <span class="year">{{ review.year }}</span></h3>
+  <!-- Refresh Control -->
+  <ion-refresher slot="fixed" (ionRefresh)="refreshNowPlayingMovies($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Now Playing Movies Container -->
+  <div class="movies-container" *ngIf="filteredMovies.length > 0">
+    <div class="movie-card" *ngFor="let movie of filteredMovies" (click)="goToMovieDetail(movie.id)">
+      <div class="movie-header">
+        <div class="movie-info">
+          <h3>{{ movie.title }} <span class="year">{{ movie.year }}</span></h3>
         </div>
-        <div class="reviewer-info">
-          <span class="reviewer-name">{{ review.reviewer }}</span>
-          <ion-avatar>
-            <img [src]="review.reviewerAvatar" alt="reviewer avatar" />
-          </ion-avatar>
+        <div class="rating">
+          <ion-icon name="star" color="warning"></ion-icon>
+          <span>{{ movie.vote_average | number:'1.1-1' }}</span>
         </div>
       </div>
-      <div class="review-content">
-        <img [src]="review.posterUrl" [alt]="review.movieTitle + ' poster'" class="movie-poster" />
-        <p class="review-text">{{ review.reviewText }}</p>
+      <div class="movie-content">
+        <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" class="movie-poster" />
+        <p class="movie-overview">{{ movie.overview | slice:0:200 }}...</p>
       </div>
     </div>
+  </div>
+
+  <!-- No Movies Found Message -->
+  <div *ngIf="filteredMovies.length === 0 && !error" class="no-movies-message">
+    <ion-text color="medium">
+      <h2>No movies found</h2>
+      <p>Try a different search query or check your connection</p>
+    </ion-text>
   </div>
 </ion-content>

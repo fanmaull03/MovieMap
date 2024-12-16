@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { TmdbService } from '../services/tmdb.service';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
-interface Review {
-  imdbID: string;
-  movieTitle: string;
-  year: string;
-  posterUrl: string;
-  rating: number;
-  reviewText: string;
-  reviewer: string;
-  reviewerAvatar: string;
+interface TmdbMovie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  overview: string;
+  vote_average: number;
+  posterUrl?: string; // Ditambahkan properti opsional
+  year?: string; // Ditambahkan properti opsional
 }
 
 @Component({
@@ -19,54 +20,71 @@ interface Review {
   styleUrls: ['lists.page.scss']
 })
 export class ListsPage implements OnInit {
-  selectedSegment = 'REVIEWS'; // Default segment
-  reviews: Review[] = [];
-  filteredReviews: Review[] = []; // Untuk menampilkan hasil pencarian
-  searchQuery: string = ''; // Query pencarian
+  selectedSegment = 'REVIEWS';
+  nowPlayingMovies: TmdbMovie[] = [];
+  filteredMovies: TmdbMovie[] = [];
+  searchQuery: string = '';
   error: string = '';
-
-  // Mock data untuk ulasan
-  mockReviews = [
-    {
-      imdbID: 'tt21064584', // ID untuk "The Iron Claw"
-      reviewText: 'Mikey Madison is superb in this very unique effort. The comparisons don\'t hold up beyond some basic plot set-up, and after the stage is set, the film is utterly unpredictable, quite funny, and hides surprising depth.',
-      rating: 4,
-      reviewer: 'Mike',
-      reviewerAvatar: 'assets/avatar1.jpg'
-    },
-    {
-      imdbID: 'tt14230458', // ID untuk "Poor Things"
-      reviewText: 'We were gonna make so many things together. We were going to put out art that would matter to people and affect their lives. We were going to do it together.',
-      rating: 4.5,
-      reviewer: 'James',
-      reviewerAvatar: 'assets/avatar2.jpg'
-    },
-    {
-      imdbID: 'tt28015403', // ID untuk "heretic"
-      reviewText: 'Jigsaw if he was an insufferable reddit atheist',
-      rating: 2.5,
-      reviewer: 'Stacey',
-      reviewerAvatar: 'assets/avatar3.jpg'
-    }
-  ];
 
   constructor(
     private tmdbService: TmdbService,
-    private router: Router
+    private router: Router,
+    private loadingController: LoadingController
   ) {}
 
   ngOnInit() {
-    this.loadReviews();
+    this.loadNowPlayingMovies();
   }
 
-  // Fungsi untuk memuat ulasan
-  loadReviews() {
-return null;
+  async loadNowPlayingMovies() {
+    const loading = await this.loadingController.create({
+      message: 'Loading Now Playing Movies...',
+      spinner: 'circles'
+    });
+    await loading.present();
+
+    this.tmdbService.getNowPlayingMovies().subscribe(
+      (response) => {
+        this.nowPlayingMovies = response.results.map((movie: TmdbMovie) => ({
+          ...movie,
+          posterUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          year: movie.release_date
+            ? new Date(movie.release_date).getFullYear().toString()
+            : 'Unknown'
+        }));
+        this.filteredMovies = [...this.nowPlayingMovies];
+        loading.dismiss();
+      },
+      (error) => {
+        this.error = 'Failed to load now playing movies. Please try again later.';
+        loading.dismiss();
+        console.error('Error fetching now playing movies:', error);
+      }
+    );
   }
 
+  // Search functionality for now playing movies
+  filterMovies() {
+    if (!this.searchQuery.trim()) {
+      this.filteredMovies = [...this.nowPlayingMovies];
+    } else {
+      const query = this.searchQuery.toLowerCase();
+      this.filteredMovies = this.nowPlayingMovies.filter((movie) =>
+        movie.title.toLowerCase().includes(query)
+      );
+    }
+  }
 
-  // Navigasi ke detail film
-  goToMovieDetail(movieId: string) {
+  // Navigate to movie detail page
+  goToMovieDetail(movieId: number) {
     this.router.navigate(['/movie-detail', movieId]);
+  }
+
+  // Refresh now playing movies
+  async refreshNowPlayingMovies(event?: any) {
+    await this.loadNowPlayingMovies();
+    if (event) {
+      event.target.complete();
+    }
   }
 }
