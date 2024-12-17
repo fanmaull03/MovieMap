@@ -14,55 +14,48 @@
       <form>
         <ion-item>
           <ion-label position="stacked">Username</ion-label>
-          <ion-input type="text" value="Rifqi Alrasy" disabled></ion-input>
+          <ion-input type="text" [value]="userData.name" disabled></ion-input>
         </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Given Name</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Family Name</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-
         <ion-item>
           <ion-label position="stacked">Email Address</ion-label>
-          <ion-input type="email" value="rifqi@example.com" disabled></ion-input>
+          <ion-input type="email" [value]="userData.email" disabled></ion-input>
         </ion-item>
-
         <ion-item>
           <ion-label position="stacked">Location</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="userData.location" name="location"></ion-input>
         </ion-item>
-
         <ion-item>
           <ion-label position="stacked">Bio</ion-label>
-          <ion-textarea rows="4"></ion-textarea>
+          <ion-textarea rows="4" [(ngModel)]="userData.bio" name="bio"></ion-textarea>
         </ion-item>
       </form>
     </div>
 
     <h3>Favorite Films</h3>
-    <div class="favorite-films-section">
-      <div class="film-container">
-        <a [routerLink]="['/upload-photo']" class="film-box">
-          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
-        </a>
-        <a [routerLink]="['/upload-photo']" class="film-box">
-          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
-        </a>
-        <a [routerLink]="['/upload-photo']" class="film-box">
-          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
-        </a>
-        <a [routerLink]="['/upload-photo']" class="film-box">
-          <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
-        </a>
-      </div>
+    <div *ngIf="favorite && favorite.length > 0; else noFavorite">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="2" *ngFor="let film of favorite">
+            <div class="favorite-card">
+              <ion-img [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="{{ film.title }}"></ion-img>
+              <div class="favorite-details">
+                <h4 class="film-title">{{ film.title }}</h4>
+                <p class="film-overview">{{ film.overview }}</p>
+                <ion-button (click)="removeFavorite(film.id)" color="danger" size="small">Remove</ion-button>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
+    <ng-template #noFavorite>
+      <div class="empty-favorite">
+        <h3>No items in your favorite</h3>
+        <p>Your favorite is empty.</p>
+      </div>
+    </ng-template>
 
-    <ion-button expand="block" color="primary" class="save-button">
+    <ion-button (click)="saveProfile()" class="save-button" expand="block">
       Save Changes
     </ion-button>
   </div>

@@ -18,6 +18,8 @@
           <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
         </div>
         <h2 class="username">{{ userData.name }}</h2>
+        <h4 class="bio">{{ userData.bio || 'Bio not set' }}</h4>
+        <p class="location">{{ userData.location || 'Location not set' }}</p>
         <ion-button
           [routerLink]="['/edit-profile']"
           class="edit-button"
@@ -56,8 +58,34 @@
 
         <!-- Reviews Section -->
         <ion-segment-content id="reviews">
-          TODO: BIKIN HALAMAN REVIEWS DISINI
+          <div *ngIf="userReviews && userReviews.length > 0; else noReviews">
+            <h3>Your Reviews</h3>
+            <ion-list>
+              <ion-item *ngFor="let review of userReviews">
+                <ion-label>
+                  <h2>Movie ID: {{ review.film_id }}</h2>
+                  <p>
+                    <strong>Rating:</strong>
+                    <ng-container *ngFor="let star of getStarArray(review.rating)">
+                      <ion-icon name="star" color="warning"></ion-icon>
+                    </ng-container>
+                  </p>
+                  <p><strong>Comment:</strong> {{ review.comment }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
+          <ng-template #noReviews>
+            <div class="empty-reviews">
+              <h3>No Reviews Available</h3>
+              <p>You haven't submitted any reviews yet.</p>
+            </div>
+          </ng-template>
         </ion-segment-content>
+           
+
+
+
 
         <!-- Watchlist Section -->
         <ion-segment-content id="watchlist">
