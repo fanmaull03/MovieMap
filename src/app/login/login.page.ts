@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -16,19 +16,29 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastController: ToastController
+    private alertController: AlertController
   ) {}
 
-  // Fungsi untuk menampilkan toast alert
-  async showToast(message: string, color: string, duration: number = 2000) {
-    const toast = await this.toastController.create({
+  // Fungsi untuk menampilkan alert
+  async showAlert(header: string, message: string, success: boolean) {
+    const alert = await this.alertController.create({
+      header: header,
       message: message,
-      duration: duration,
-      color: color,
-      position: 'top', // Posisi di atas layar
-      cssClass: 'custom-toast', // Tambahkan kelas CSS khusus untuk gaya
+      cssClass: success ? 'alert-success' : 'alert-failure', // CSS khusus
+      buttons: [
+        {
+          text: success ? 'Continue' : 'Retry',
+          handler: () => {
+            if (success) {
+              this.router.navigate(['/tabs/profile']); // Redirect saat sukses
+            }
+          },
+        },
+      ],
+      backdropDismiss: false, // Alert tidak dapat ditutup dengan klik di luar
     });
-    await toast.present();
+
+    await alert.present();
   }
 
   async onSubmit() {
@@ -39,24 +49,20 @@ export class LoginPage {
           await firstValueFrom(
             this.authService.login({ email: this.email, password: this.password })
           );
+
         // Simpan token dan data pengguna di local storage
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
 
-        // Tampilkan toast sukses
-        await this.showToast('Login successful!', 'success');
-
-        // Redirect ke halaman profile setelah toast tampil
-        setTimeout(() => {
-          this.router.navigate(['/tabs/profile']);
-        }, 2000); // Tunggu sampai toast selesai sebelum redirect
+        // Tampilkan alert sukses
+        await this.showAlert('Success', 'Login successful! Welcome back.', true);
       } catch (error: any) {
-        // Tampilkan toast error
-        await this.showToast('Login failed! Please check your credentials.', 'danger');
+        // Tampilkan alert error
+        await this.showAlert('Error', 'Login failed! Please check your credentials.', false);
       }
     } else {
-      // Tampilkan toast untuk input yang kosong
-      await this.showToast('Email and password are required!', 'warning');
+      // Tampilkan alert untuk input yang kosong
+      await this.showAlert('Warning', 'Email and password are required!', false);
     }
   }
 }
