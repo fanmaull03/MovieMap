@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { WatchlistService } from '../services/watchlist.service';
 import { TmdbService } from '../services/tmdb.service';
 import {
   NavController,
@@ -31,6 +32,7 @@ export class MovieDetailPage implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TmdbService,
     private reviewService: ReviewService,
+    private watchlistService: WatchlistService,
     private navCtrl: NavController,
     private alertController: AlertController, // Tambahkan alert controller
     private loadingController: LoadingController // Tambahkan loading controller
@@ -40,6 +42,7 @@ export class MovieDetailPage implements OnInit {
     const imdbID = this.route.snapshot.paramMap.get('id');
     if (imdbID) {
       this.fetchMovieDetails(imdbID);
+      this.getReviews(imdbID);
     }
   }
 
@@ -118,6 +121,33 @@ export class MovieDetailPage implements OnInit {
   getStarArray(rating: number): number[] {
     return Array(rating).fill(0); // Membuat array sebanyak jumlah rating
   }
+  async addWatchlist() {
+    // Validasi film_id
+    if (this.movieDetails && this.movieDetails.id) {
+        try {
+            this.isLoading = true; // Set loading state
+            // Data payload yang akan dikirim ke server
+            const payload = {
+                film_id: this.movieDetails.id,
+                user_id: this.user.id
+            };
+            // Kirim request ke server menggunakan HTTP Client
+            const response = await this.watchlistService.addWatchlist(payload).toPromise();
+            // Log response
+            console.log('Success:', response);
+            // Feedback ke pengguna
+            this.presentAlert('Success', 'Film added to watchlist successfully!');
+        } catch (error) {
+            console.error('Error adding to watchlist:', error);
+            this.presentAlert('Sorry', 'This Film has Already added in Your Watchlists');
+        } finally {
+            this.isLoading = false; // Reset loading state
+        }
+    } else {
+        // Jika film_id tidak valid
+        this.presentAlert('Error', 'Film ID is required to add to watchlist.');
+    }
+}
 
   async submitReview() {
     if (!this.newReview.rating || !this.newReview.comment.trim()) {

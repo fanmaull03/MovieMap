@@ -81,7 +81,7 @@ ion-card-content {
 
 /* Movie Card */
 .movie-card {
-  background: #1a1a1a; /* Latar belakang kartu gelap */
+  --background: #1a1a1a; /*  gelap */
   color: #fff; /* Teks putih */
   border: 1px solid #ffcc00; /* Border emas */
   border-radius: 10px;
@@ -135,7 +135,7 @@ ion-card-subtitle {
 /* Reviews Section */
 .reviews-section {
   margin-top: 20px;
-  background: #121212; /* Latar belakang lebih gelap untuk section reviews */
+  --background: #1a1a1a; /*  gelap */
   padding: 20px;
   border-radius: 10px;
   border: 2px solid #ffcc00; /* Border emas di sekitar section */
@@ -158,6 +158,9 @@ ion-card-subtitle {
 .review-item ion-avatar {
   margin-right: 10px;
 }
+.review-item
+.review-item ion-card-content, .review-item ion-label, .reviews-list {
+background-color: #1a1a1a;}
 
 .review-item ion-label h2 {
   font-weight: bold;
@@ -165,6 +168,7 @@ ion-card-subtitle {
   margin-bottom: 5px;
   color: #ffcc00; /* Nama pengguna berwarna emas */
 }
+
 
 .review-item ion-label p {
   margin: 5px 0;

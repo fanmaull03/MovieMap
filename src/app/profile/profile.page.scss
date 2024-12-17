@@ -1,7 +1,5 @@
-/* profile.page.scss */
 .profile-header {
   text-align: center;
-  padding: 20px;
   background: var(--theme-background); /* Latar belakang gelap */
   border-bottom: 1px solid #333;
 }
@@ -21,6 +19,83 @@ ion-header {
     font-size: 20px;
     font-weight: 700;
   }
+}
+
+li {
+  display: flex;
+  align-items: center; /* Mengatur agar gambar dan teks sejajar secara vertikal */
+  gap: 16px; /* Memberi jarak antara gambar dan teks */
+}
+
+.watchlist-list {
+  display: block; /* Memastikan list tampil secara block */
+  width: 100%; /* Lebar penuh */
+  overflow-x: hidden; /* Menyembunyikan overflow horizontal */
+}
+
+.watchlist-item {
+  display: flex;
+  align-items: flex-start; /* Mengatur agar gambar dan teks sejajar di atas */
+  justify-content: flex-start; /* Mengatur agar elemen diurutkan secara horizontal */
+  gap: 16px; /* Memberi jarak antara gambar dan teks */
+  overflow: hidden; /* Menyembunyikan overflow */
+  max-width: 100%; /* Membatasi lebar maksimal agar tidak overflow */
+}
+
+.watchlist-img {
+  width: 80px; /* Ukuran gambar */
+  height: 120px; /* Ukuran gambar */
+  object-fit: cover; /* Menjaga gambar tidak terdistorsi */
+  flex-shrink: 0; /* Mencegah gambar mengecil */
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Menjaga teks sejajar di atas */
+  flex: 1; /* Memastikan elemen info memakan sisa ruang */
+  overflow: hidden; /* Menyembunyikan overflow */
+}
+
+.film-title {
+  font-weight: bold;
+  font-size: 1.1em; /* Ukuran font judul */
+  margin: 0; /* Menghapus margin untuk menjaga keselarasan */
+  overflow: hidden; /* Menyembunyikan overflow */
+  white-space: nowrap; /* Mencegah teks turun ke baris berikutnya */
+  text-overflow: ellipsis; /* Mengganti teks yang overflow dengan elipsis (...) */
+}
+
+.film-overview {
+  font-size: 0.9em; /* Ukuran font deskripsi */
+  margin: 0; /* Menghapus margin untuk menjaga keselarasan */
+  overflow: hidden; /* Menyembunyikan overflow */
+  white-space: normal; /* Mengizinkan teks turun ke baris berikutnya */
+  text-overflow: ellipsis; /* Mengganti teks yang overflow dengan elipsis (...) */
+  display: -webkit-box; /* Digunakan bersama dengan -webkit-line-clamp */
+  -webkit-line-clamp: 3; /* Menampilkan maksimal 3 baris */
+  -webkit-box-orient: vertical; /* Mengatur orientasi teks */
+}
+
+div {
+  display: block;
+  height: fit-content; /* Mengubah display menjadi block */
+}
+
+p:first-child {
+  font-weight: bold;
+  font-size: 1.1em; 
+  color: #ffcc00; /* Ukuran font judul */
+  overflow: hidden; /* Menambahkan aturan overflow */
+  white-space: nowrap; /* Mencegah teks turun ke baris berikutnya */
+  text-overflow: ellipsis; /* Mengganti teks yang overflow dengan elipsis (...) */
+}
+
+p:last-child {
+  font-size: 0.5em; /* Ukuran font deskripsi */
+  overflow: hidden; /* Menambahkan aturan overflow */
+  white-space: nowrap; /* Mencegah teks turun ke baris berikutnya */
+  text-overflow: ellipsis; /* Mengganti teks yang overflow dengan elipsis (...) */
 }
 
 .avatar {
@@ -56,7 +131,6 @@ ion-segment {
   --indicator-color: var(--theme-primary); /* Indikator emas */
   --color: var(--theme-muted-text); /* Warna teks segmen */
   --color-checked: var(--theme-primary); /* Warna teks segmen aktif emas */
-  padding: 8px 16px;
   border-radius: 8px;
 }
 

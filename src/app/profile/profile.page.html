@@ -33,34 +33,56 @@
           Watchlist
         </ion-segment-button>
       </ion-segment>
+
       <ion-segment-view>
+        <!-- Profile Section -->
         <ion-segment-content id="profile">
           <ion-button
             (click)="logout()"
             color="danger"
             expand="full"
             class="logout-button"
-            >Logout</ion-button
-          >
+          >Logout</ion-button>
 
           <div class="content-section">
             <h3>Favorite Films</h3>
             <p>
               Don’t forget to select your
-              <a [routerLink]="['/edit-profile']" class="edit-link"
-                >favorite films!</a
-              >
+              <a [routerLink]="['/edit-profile']" class="edit-link">favorite films!</a>
             </p>
             <h3>Recent Activity</h3>
             <div class="empty-activity">No recent activity available.</div>
           </div>
         </ion-segment-content>
-        <ion-segment-content id="reviews"
-          >TODO: BIKIN HALAMAN REVIEWS DISINI</ion-segment-content
-        >
-        <ion-segment-content id="watchlist"
-          >TODO: BIKIN WATCHLIST DISINI</ion-segment-content
-        >
+
+        <!-- Reviews Section -->
+        <ion-segment-content id="reviews">
+          TODO: BIKIN HALAMAN REVIEWS DISINI
+        </ion-segment-content>
+
+        <!-- Watchlist Section -->
+        <ion-segment-content id="watchlist">
+          <div *ngIf="watchlist && watchlist.length > 0; else noWatchlist">
+            <h3 class="watchlist-header">Your Watchlist</h3>
+            <ul class="watchlist-list">
+              <li *ngFor="let film of watchlist" class="watchlist-item">
+                <ion-img [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="{{ film.title }}" class="watchlist-img"></ion-img>
+                <div class="item-info">
+                  <p class="film-title">{{ film.title }}</p>
+                  <p class="film-overview">{{ film.overview }}</p>
+                  <ion-button (click)="removeWatchlist(film.id)" color="danger" size="small">Remove</ion-button>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <ng-template #noWatchlist>
+            <div class="empty-watchlist">
+              <h3>No items in your watchlist</h3>
+              <p>Your watchlist is empty.</p>
+            </div>
+          </ng-template>
+        </ion-segment-content>
+
       </ion-segment-view>
     </ion-card>
   </div>
