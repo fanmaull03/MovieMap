@@ -39,30 +39,29 @@
 /* global.scss */
 body, ion-app {
     font-family: 'Poppins', sans-serif;
-  }
+}
 
-  /* Terapkan font Poppins secara global */
+/* Terapkan font Poppins secara global */
 ion-toolbar, ion-title, ion-label, ion-input, ion-button, h1, h2, h3, p {
     font-family: 'Poppins', sans-serif;
-  }
-  
-  :root {
-    --ion-color-primary: #ffcc00; /* Warna emas */
-    --ion-color-primary-contrast: #000; /* Teks hitam */
-    --ion-color-primary-shade: #e6b800; /* Shade warna emas */
-    --ion-color-primary-tint: #ffd633; /* Tint warna emas */
-  }
+}
 
-  :root {
-    --theme-primary: #ffcc00; /* Emas */
-    --theme-secondary: #888; /* Abu-abu terang */
-    --theme-background: #000; /* Hitam */
-    --theme-card-background: #111; /* Hitam gelap */
-    --theme-text: #fff; /* Putih */
-    --theme-muted-text: #666; /* Abu-abu redup */
-  }
-  
-  ion-alert {
+:root {
+  --ion-color-primary: #ffcc00; /* Warna emas */
+  --ion-color-primary-contrast: #000; /* Teks hitam */
+  --ion-color-primary-shade: #e6b800; /* Shade warna emas */
+  --ion-color-primary-tint: #ffd633; /* Tint warna emas */
+
+  --theme-primary: #ffcc00; /* Emas */
+  --theme-secondary: #888; /* Abu-abu terang */
+  --theme-background: #000; /* Hitam */
+  --theme-card-background: #111; /* Hitam gelap */
+  --theme-text: #fff; /* Putih */
+  --theme-muted-text: #666; /* Abu-abu redup */
+}
+
+
+ion-alert {
     --background: #1a1a1a; /* Latar belakang gelap */
     --header-color: #ffcc00; /* Warna teks header emas */
     --message-color: #fff; /* Warna teks pesan putih */
@@ -73,22 +72,92 @@ ion-toolbar, ion-title, ion-label, ion-input, ion-button, h1, h2, h3, p {
     --button-border-radius: 8px; /* Sudut tombol melengkung */
     --box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6); /* Shadow untuk alert */
     border: 2px solid #ffcc00; /* Border emas */
-  }
-  
-  .alert-success {
+}
+
+/* Custom styling untuk alert */
+.custom-alert .alert-head {
+  color: #ffcc00; /* Warna emas */
+}
+
+
+
+/* Styling untuk alert logout */
+.alert-wrapper {
+    --background: #222; /* Latar belakang gelap */
+    --color: #ffcc00; /* Warna teks emas */
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Header alert */
+.alert-wrapper .alert-head {
+    background-color: #222; /* Latar belakang gelap */
+    color: #ffcc00; /* Teks emas */
+    font-size: 18px;
+    font-weight: 700;
+    padding: 16px;
+    text-align: center;
+}
+
+/* Body alert */
+.alert-wrapper .alert-message {
+    background-color: #222; /* Latar belakang lebih gelap */
+    color: #ddd; /* Warna teks abu-abu terang */
+    font-size: 14px;
+    padding: 16px;
+    text-align: center;
+}
+
+/* Tombol alert */
+.alert-wrapper .alert-button {
+    --background: #d9534f; /* Merah untuk tombol */
+    --color: white;
+    --border-radius: 4px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.alert-wrapper .alert-button:hover {
+    --background: #c9302c; /* Merah lebih gelap saat hover */
+}
+
+/* Tombol cancel */
+.alert-wrapper .alert-button-cancel {
+    --background: #888; /* Warna abu-abu untuk tombol cancel */
+    --color: white;
+    --border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.alert-wrapper .alert-button-cancel:hover {
+    --background: #555; /* Warna lebih gelap saat hover */
+}
+
+.alert-wrapper .alert-button-group {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.alert-success {
     &::part(message) {
-      background: #28a745; /* Hijau sukses */
-      color: #fff; /* Teks putih */
-      text-align: center;
-      font-weight: bold;
+        background: #28a745; /* Hijau sukses */
+        color: #fff; /* Teks putih */
+        text-align: center;
+        font-weight: bold;
     }
-  }
-  
-  .alert-failure {
+}
+
+.alert-failure {
     &::part(message) {
-      background: #dc3545; /* Merah gagal */
-      color: #fff; /* Teks putih */
-      text-align: center;
-      font-weight: bold;
+        background: #dc3545; /* Merah gagal */
+        color: #fff; /* Teks putih */
+        text-align: center;
+        font-weight: bold;
     }
-  }
+}

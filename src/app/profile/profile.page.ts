@@ -149,18 +149,19 @@ export class ProfilePage {
   async logout() {
     // Membuat alert konfirmasi
     const alert = await this.alertController.create({
-      header: 'Logout',
-      message: 'Apakah Anda yakin ingin keluar?',
+      header: 'Exit',
+      message: 'Are you sure you want to exit?',
+      cssClass: 'custom-alert',
       buttons: [
         {
-          text: 'Batal',
+          text: 'Cancel',
           role: 'cancel',
           handler: () => {
             console.log('Logout dibatalkan');
           }
         },
         {
-          text: 'Keluar',
+          text: 'Exit',
           handler: () => {
             // Jika user memilih "Keluar", lanjutkan dengan logout
             const token = localStorage.getItem('token');

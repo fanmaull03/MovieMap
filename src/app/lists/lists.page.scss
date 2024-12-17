@@ -1,13 +1,25 @@
+/* Header */
+ion-header {
+  background: #000 !important; /* Latar belakang hitam */
+  color: #ffcc00 !important; /* Warna teks emas */
+  ion-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #ffcc00; /* Teks emas pada judul */
+  }
+}
+
+/* Konten Utama */
+ion-content {
+  background: #000 !important; /* Latar belakang hitam */
+  color: var(--theme-text) !important; /* Warna teks putih */
+}
+
 .movies-container {
   padding: 16px;
-}
-ion-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 20px;
-  letter-spacing: 1px;
-  color: #ffcc00; /* Teks emas pada judul */
 }
 
 
@@ -92,11 +104,4 @@ ion-title {
     color: var(--theme-primary);
     font-weight: 700;
   }
-}
-
-ion-searchbar {
-  --background: var(--theme-card-background);
-  --color: var(--theme-text);
-  --placeholder-color: var(--theme-muted-text);
-  --icon-color: var(--theme-primary);
 }
