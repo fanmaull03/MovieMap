@@ -123,6 +123,7 @@ export class MovieDetailPage implements OnInit {
   }
   async addWatchlist() {
     // Validasi film_id
+    if(localStorage.getItem('token')){
     if (this.movieDetails && this.movieDetails.id) {
         try {
             this.isLoading = true; // Set loading state
@@ -147,9 +148,14 @@ export class MovieDetailPage implements OnInit {
         // Jika film_id tidak valid
         this.presentAlert('Error', 'Film ID is required to add to watchlist.');
     }
+} else {
+  this.presentAlert('Sorry','Please Login First')
+  
 }
+  }
 
   async submitReview() {
+    if (localStorage.getItem('token')){
     if (!this.newReview.rating || !this.newReview.comment.trim()) {
       this.presentAlert('Error', 'Please provide a rating and a comment.');
       return;
@@ -183,5 +189,8 @@ export class MovieDetailPage implements OnInit {
       this.presentAlert('Error', 'Film ID is missing or invalid.');
       loading.dismiss();
     }
+  } else {
+    this.presentAlert('Sorry','Please Login First')
   }
+}
 }
