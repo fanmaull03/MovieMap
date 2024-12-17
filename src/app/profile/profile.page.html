@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Profile</ion-title>
     <!-- Logout Icon in Header -->
-    <ion-buttons slot="end">
+    <ion-buttons *ngIf="userData" slot="end">
       <ion-button (click)="logout()">
         <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
       </ion-button>

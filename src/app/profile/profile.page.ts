@@ -113,7 +113,6 @@ export class ProfilePage {
   ngOnInit() {
     // Muat ulang data pengguna
     this.loadUserData();
-    
     // Pastikan data dimuat sebelum mengambil watchlist
     if (this.userData && this.userData.id) {
       this.getWatchlist();
