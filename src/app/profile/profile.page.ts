@@ -33,6 +33,7 @@ export class ProfilePage {
     console.log('User Data:', data); // Debug log to check if user data is retrieved correctly
     this.userData = data ? JSON.parse(data) : null; // Parse JSON if data exists, otherwise set to null
   }
+
   async presentAlert(header: string, message: string, response: any) {
     const alert = await this.alertController.create({
       header,
@@ -74,17 +75,16 @@ export class ProfilePage {
     }
   }
   
-  
   async getWatchlist() {
     this.isLoading = true; // Start loading state
     console.log('Fetching watchlist...');
-    
+
     if (!this.userData || !this.userData.id) {
       console.warn('User data or User ID not found');
       this.isLoading = false;
       return;
     }
-    
+
     const userId = this.userData.id; // Retrieve the user ID from userData
     console.log('User ID:', userId); // Debug log to check if userId is retrieved
 
@@ -109,6 +109,7 @@ export class ProfilePage {
       this.isLoading = false; // End loading state
     }
   }
+
   ngOnInit() {
     // Muat ulang data pengguna
     this.loadUserData();
@@ -144,25 +145,47 @@ export class ProfilePage {
     }
   }
 
+  // Logout with confirmation
+  async logout() {
+    // Membuat alert konfirmasi
+    const alert = await this.alertController.create({
+      header: 'Logout',
+      message: 'Apakah Anda yakin ingin keluar?',
+      buttons: [
+        {
+          text: 'Batal',
+          role: 'cancel',
+          handler: () => {
+            console.log('Logout dibatalkan');
+          }
+        },
+        {
+          text: 'Keluar',
+          handler: () => {
+            // Jika user memilih "Keluar", lanjutkan dengan logout
+            const token = localStorage.getItem('token');
+            const headers = new HttpHeaders({
+              'Authorization': `Bearer ${token}` // Setel header Authorization
+            });
 
-  logout() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}` // Set the Authorization header
+            console.log('Logging out with token:', token); // Debug log untuk logout
+            this.http.post<HttpResponse<any>>('http://localhost:8000/api/logout', {}, { headers })
+              .subscribe(
+                (response: HttpResponse<any>) => {
+                  console.log('Logout berhasil', response);
+                  localStorage.removeItem('user'); // Hapus data user dari localStorage
+                  localStorage.removeItem('token'); // Hapus token dari localStorage
+                  this.router.navigate(['/login']); // Arahkan ke halaman login
+                },
+                (error: any) => {
+                  console.error('Logout error', error);
+                }
+              );
+          }
+        }
+      ]
     });
 
-    console.log('Logging out with token:', token); // Debug log for logout
-    this.http.post<HttpResponse<any>>('http://localhost:8000/api/logout', {}, { headers })
-      .subscribe(
-        (response: HttpResponse<any>) => {
-          console.log('Logout successful', response);
-          localStorage.removeItem('user'); // Clear user data from localStorage
-          localStorage.removeItem('token'); // Clear token from localStorage
-          this.router.navigate(['/login']); // Redirect to login page
-        },
-        (error: any) => {
-          console.error('Logout error', error);
-        }
-      );
+    await alert.present(); // Tampilkan alert konfirmasi
   }
 }
