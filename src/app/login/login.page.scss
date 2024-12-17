@@ -1,3 +1,27 @@
+:root {
+  --theme-primary: #ffcc00; /* Emas */
+  --theme-secondary: #888; /* Abu-abu terang */
+  --theme-background: #000; /* Hitam */
+  --theme-card-background: #111; /* Hitam gelap */
+  --theme-text: #fff; /* Putih */
+  --theme-muted-text: #666; /* Abu-abu redup */
+}
+
+body {
+  background-color: var(--theme-background, #000); /* Default hitam */
+  color: var(--theme-text, #fff);
+}
+
+.card {
+  background-color: var(--theme-card-background, #111);
+  color: var(--theme-text, #fff);
+}
+
+body, ion-content {
+  background-color: #000 !important; /* Warna hitam */
+  color: #fff; /* Teks putih */
+}
+
 ion-content {
   --background: #000; /* Latar belakang hitam */
   color: #fff; /* Teks putih */
@@ -79,22 +103,22 @@ ion-button.routerLink {
 }
 
 .alert-success {
-  --background: #dfffd8; /* Warna hijau muda */
-  --color: #2a7f0d; /* Warna teks hijau gelap */
-  --border-radius: 12px;
-  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  &::part(message) {
+    background: #28a745 !important; /* Hijau sukses */
+    color: #fff; /* Teks putih */
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
 .alert-failure {
-  --background: #ffe6e6; /* Warna merah muda */
-  --color: #a10000; /* Warna teks merah tua */
-  --border-radius: 12px;
-  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  &::part(message) {
+    background: #dc3545 !important; /* Merah gagal */
+    color: #fff; /* Teks putih */
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
-.alert-wrapper {
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-}
+
 

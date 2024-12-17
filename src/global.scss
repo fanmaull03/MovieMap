@@ -75,4 +75,20 @@ ion-toolbar, ion-title, ion-label, ion-input, ion-button, h1, h2, h3, p {
     border: 2px solid #ffcc00; /* Border emas */
   }
   
+  .alert-success {
+    &::part(message) {
+      background: #28a745; /* Hijau sukses */
+      color: #fff; /* Teks putih */
+      text-align: center;
+      font-weight: bold;
+    }
+  }
   
+  .alert-failure {
+    &::part(message) {
+      background: #dc3545; /* Merah gagal */
+      color: #fff; /* Teks putih */
+      text-align: center;
+      font-weight: bold;
+    }
+  }

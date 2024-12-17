@@ -24,22 +24,24 @@ export class LoginPage {
     const alert = await this.alertController.create({
       header: header,
       message: message,
-      cssClass: success ? 'alert-success' : 'alert-failure', // CSS khusus
-      buttons: [
-        {
-          text: success ? 'Continue' : 'Retry',
-          handler: () => {
-            if (success) {
-              this.router.navigate(['/tabs/profile']); // Redirect saat sukses
-            }
-          },
-        },
-      ],
-      backdropDismiss: false, // Alert tidak dapat ditutup dengan klik di luar
+      cssClass: success ? 'alert-success' : 'alert-failure',
+      backdropDismiss: false, // Tidak bisa ditutup dengan klik luar
+      buttons: [], // Alert tanpa tombol
     });
 
     await alert.present();
+
+    // Alert
+    setTimeout(() => {
+      alert.dismiss();
+
+      // Redirect hanya jika sukses login
+      if (success) {
+        this.router.navigate(['/tabs/profile']);
+      }
+    }, 1500);
   }
+
 
   async onSubmit() {
     if (this.email && this.password) {

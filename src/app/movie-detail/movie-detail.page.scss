@@ -228,3 +228,16 @@ ion-alert {
   --box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6); /* Shadow untuk alert */
   border: 2px solid #ffcc00; /* Border emas */
 }
+
+ion-alert::part(header) {
+  color: #ffcc00; /* Warna emas untuk judul */
+}
+
+ion-alert::part(message) {
+  color: #fff; /* Warna putih untuk pesan */
+}
+
+ion-alert::part(button) {
+  background: #333;
+  color: #ffcc00; /* Warna emas pada tombol */
+}

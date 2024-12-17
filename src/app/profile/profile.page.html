@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Profile</ion-title>
+    <!-- Logout Icon in Header -->
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -37,13 +43,6 @@
       <ion-segment-view>
         <!-- Profile Section -->
         <ion-segment-content id="profile">
-          <ion-button
-            (click)="logout()"
-            color="danger"
-            expand="full"
-            class="logout-button"
-          >Logout</ion-button>
-
           <div class="content-section">
             <h3>Favorite Films</h3>
             <p>
@@ -66,11 +65,20 @@
             <h3 class="watchlist-header">Your Watchlist</h3>
             <ul class="watchlist-list">
               <li *ngFor="let film of watchlist" class="watchlist-item">
-                <ion-img [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="{{ film.title }}" class="watchlist-img"></ion-img>
+                <ion-img 
+                  [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path" 
+                  alt="{{ film.title }}" 
+                  class="watchlist-img">
+                </ion-img>
                 <div class="item-info">
-                  <p class="film-title">{{ film.title }}</p>
+                  <h4 class="film-title">{{ film.title }}</h4>
                   <p class="film-overview">{{ film.overview }}</p>
-                  <ion-button (click)="removeWatchlist(film.id)" color="danger" size="small">Remove</ion-button>
+                  <ion-button 
+                    (click)="removeWatchlist(film.id)" 
+                    color="danger" 
+                    size="small">
+                    Remove
+                  </ion-button>
                 </div>
               </li>
             </ul>
@@ -82,7 +90,6 @@
             </div>
           </ng-template>
         </ion-segment-content>
-
       </ion-segment-view>
     </ion-card>
   </div>

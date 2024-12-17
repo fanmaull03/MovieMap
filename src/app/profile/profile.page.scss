@@ -12,6 +12,11 @@ ion-header {
     border-bottom: 2px solid #333;
   }
 
+  ion-icon {
+    color: #d9534f; /* Merah */
+    font-size: 24px; /* Ukuran ikon (opsional) */
+  }
+
   ion-title {
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
@@ -21,61 +26,118 @@ ion-header {
   }
 }
 
-li {
-  display: flex;
-  align-items: center; /* Mengatur agar gambar dan teks sejajar secara vertikal */
-  gap: 16px; /* Memberi jarak antara gambar dan teks */
-}
-
-.watchlist-list {
-  display: block; /* Memastikan list tampil secara block */
-  width: 100%; /* Lebar penuh */
-  overflow-x: hidden; /* Menyembunyikan overflow horizontal */
+/* Styling untuk header watchlist */
+.watchlist-header {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .watchlist-item {
-  display: flex;
-  align-items: flex-start; /* Mengatur agar gambar dan teks sejajar di atas */
-  justify-content: flex-start; /* Mengatur agar elemen diurutkan secara horizontal */
-  gap: 16px; /* Memberi jarak antara gambar dan teks */
-  overflow: hidden; /* Menyembunyikan overflow */
-  max-width: 100%; /* Membatasi lebar maksimal agar tidak overflow */
+  display:flex ;
+  align-items: flex-start; /* Gambar dan teks sejajar ke atas */
+  gap: 12px; /* Jarak antara gambar dan teks */
+  margin-bottom: 15px; /* Memberi jarak antar item */
+  padding: 10px;
+  background: #1a1a1a; /* Latar belakang gelap */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
+.watchlist-item:hover {
+  transform: translateY(-5px); /* Efek hover */
+}
+
+/* Grid container untuk watchlist */
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 16px;
+}
+
+/* Kartu untuk setiap item film */
+.watchlist-card {
+  background: #222; /* Latar belakang gelap */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.watchlist-card:hover {
+  transform: translateY(-8px); /* Efek hover naik */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Gambar pada watchlist */
 .watchlist-img {
-  width: 80px; /* Ukuran gambar */
-  height: 120px; /* Ukuran gambar */
-  object-fit: cover; /* Menjaga gambar tidak terdistorsi */
-  flex-shrink: 0; /* Mencegah gambar mengecil */
+  width: 80px;
+  height: 120px;
+  object-fit: cover; /* Menjaga gambar tetap proporsional */
+  border-radius: 8px; /* Membuat sudut gambar melengkung */
+}
+
+/* Informasi detail film */
+.watchlist-details {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
 }
 
 .item-info {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Menjaga teks sejajar di atas */
-  flex: 1; /* Memastikan elemen info memakan sisa ruang */
-  overflow: hidden; /* Menyembunyikan overflow */
+  justify-content: space-between;
+  flex: 1; /* Ambil ruang sisa */
+  min-width: 0; /* Mengatasi overflow */
 }
 
 .film-title {
+  font-size: 16px;
   font-weight: bold;
-  font-size: 1.1em; /* Ukuran font judul */
-  margin: 0; /* Menghapus margin untuk menjaga keselarasan */
-  overflow: hidden; /* Menyembunyikan overflow */
-  white-space: nowrap; /* Mencegah teks turun ke baris berikutnya */
-  text-overflow: ellipsis; /* Mengganti teks yang overflow dengan elipsis (...) */
+  color: #ffcc00; /* Warna emas untuk judul */
+  margin: 0 0 5px 0;
+  white-space: normal; /* Biarkan judul turun ke baris berikutnya jika panjang */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .film-overview {
-  font-size: 0.9em; /* Ukuran font deskripsi */
-  margin: 0; /* Menghapus margin untuk menjaga keselarasan */
-  overflow: hidden; /* Menyembunyikan overflow */
-  white-space: normal; /* Mengizinkan teks turun ke baris berikutnya */
-  text-overflow: ellipsis; /* Mengganti teks yang overflow dengan elipsis (...) */
-  display: -webkit-box; /* Digunakan bersama dengan -webkit-line-clamp */
-  -webkit-line-clamp: 3; /* Menampilkan maksimal 3 baris */
-  -webkit-box-orient: vertical; /* Mengatur orientasi teks */
+  font-size: 12px;
+  color: #ddd; /* Warna abu-abu terang */
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Batasi deskripsi maksimal 3 baris */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
+
+/* Tombol remove */
+.remove-btn {
+  --background: #d9534f;
+  --color: white;
+  --border-radius: 4px;
+}
+
+.remove-btn:hover {
+  --background: #c9302c;
+}
+
+/* Empty watchlist state */
+.empty-watchlist {
+  text-align: center;
+  color: #888;
+  font-size: 1.2em;
+  margin-top: 40px;
+}
+
 
 div {
   display: block;
@@ -216,3 +278,4 @@ ion-card {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
