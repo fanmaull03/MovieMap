@@ -78,13 +78,23 @@ ion-button.routerLink {
   --color: var(--theme-text);
 }
 
-.custom-toast {
-  --background: rgba(0, 0, 0, 0.85); /* Latar belakang semi-transparan */
-  --color: #ffffff; /* Warna teks putih */
-  --border-radius: 8px; /* Sudut membulat */
-  --padding-start: 16px; /* Padding kiri */
-  --padding-end: 16px; /* Padding kanan */
-  --font-size: 1rem; /* Ukuran font */
-  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Bayangan */
-  text-align: center; /* Pusatkan teks */
+.alert-success {
+  --background: #dfffd8; /* Warna hijau muda */
+  --color: #2a7f0d; /* Warna teks hijau gelap */
+  --border-radius: 12px;
+  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+.alert-failure {
+  --background: #ffe6e6; /* Warna merah muda */
+  --color: #a10000; /* Warna teks merah tua */
+  --border-radius: 12px;
+  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.alert-wrapper {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+

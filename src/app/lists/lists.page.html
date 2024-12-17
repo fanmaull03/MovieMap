@@ -5,16 +5,6 @@
     </ion-buttons>
     <ion-title>🎬 Now Playing</ion-title>
   </ion-toolbar>
-
-  <!-- Search Bar -->
-  <ion-toolbar color="dark">
-    <ion-searchbar
-      placeholder="Search movies..."
-      [(ngModel)]="searchQuery"
-      (ionChange)="filterMovies()"
-      color="medium"
-    ></ion-searchbar>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color="dark">
