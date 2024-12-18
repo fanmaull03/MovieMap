@@ -220,29 +220,32 @@ ion-card-content {
 .error-message ion-text {
   color: #ffcc00; /* Teks error dengan warna emas */
 }
-
 ion-alert {
-  --background: #1a1a1a; /* Latar belakang gelap */
-  --header-color: #ffcc00; /* Warna teks header emas */
-  --message-color: #fff; /* Warna teks pesan putih */
-  --button-background: #333; /* Latar belakang tombol gelap */
-  --button-color: #ffcc00; /* Warna teks tombol emas */
-  --button-hover-background: #444; /* Latar belakang tombol saat hover */
-  --button-hover-color: #fff; /* Warna teks tombol saat hover */
-  --button-border-radius: 8px; /* Sudut tombol melengkung */
-  --box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6); /* Shadow untuk alert */
-  border: 2px solid #ffcc00; /* Border emas */
+  --background: #1a1a1a !important; /* Latar belakang gelap */
+  --header-color: #ffcc00 !important; /* Warna teks header kuning */
+  --message-color: #fff !important; /* Warna teks pesan putih */
+  --button-background: #aba5a5 !important; /* Latar belakang tombol abu-abu */
+  --button-color: #ffcc00 !important; /* Warna teks tombol kuning */
+  --button-hover-background: #444 !important; /* Latar belakang tombol saat hover */
+  --button-hover-color: #fff !important; /* Warna teks tombol saat hover */
+  --button-border-radius: 8px !important; /* Sudut tombol melengkung */
+  --box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6) !important; /* Shadow untuk alert */
+  border: 2px solid #ffcc00 !important; /* Border kuning */
 }
 
 ion-alert::part(header) {
-  color: #ffcc00; /* Warna emas untuk judul */
+  --background: #ffcc00 !important; /* Latar belakang header kuning */
+  color: #1a1a1a !important; /* Warna teks header gelap */
+  font-size: 1.4em !important; /* Ukuran font lebih besar */
+  font-weight: bold !important; /* Teks lebih tebal */
+  text-align: center !important; /* Teks berada di tengah */
 }
 
 ion-alert::part(message) {
-  color: #fff; /* Warna putih untuk pesan */
+  color: #fff !important; /* Warna putih untuk pesan */
 }
 
 ion-alert::part(button) {
-  background: #333;
-  color: #ffcc00; /* Warna emas pada tombol */
+  background: #aba5a5 !important; /* Latar belakang tombol abu-abu */
+  color: #ffcc00 !important; /* Warna teks tombol kuning */
 }

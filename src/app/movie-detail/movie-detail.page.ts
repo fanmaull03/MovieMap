@@ -194,6 +194,7 @@ export class MovieDetailPage implements OnInit {
       header,
       message,
       buttons: ['OK'],
+      
     });
     await alert.present();
   }
