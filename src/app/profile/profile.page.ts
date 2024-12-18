@@ -5,6 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import { WatchlistService } from '../services/watchlist.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { TmdbService } from '../services/tmdb.service';
+import { ReviewService } from '../services/review.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,18 +15,21 @@ import { TmdbService } from '../services/tmdb.service';
 export class ProfilePage {
   userData: any; // Variable to hold user data
   watchlist: any[] = []; // Store watchlist films
+  userReviews: any[] = [];
   isLoading: boolean = false;
 
   constructor(
     private loadingController: LoadingController,
     private watchlistService: WatchlistService,
     private tmdbService: TmdbService,
+    private reviewService: ReviewService,
     private http: HttpClient, 
     private router: Router,
     private alertController: AlertController, // Tambahkan alert controller
   ) {
     this.loadUserData(); // Load user data on component initialization
     this.getWatchlist(); // Get watchlist data as soon as the component is initialized
+    this.getUserReviews();
   }
 
   loadUserData() {
@@ -33,6 +37,45 @@ export class ProfilePage {
     console.log('User Data:', data); // Debug log to check if user data is retrieved correctly
     this.userData = data ? JSON.parse(data) : null; // Parse JSON if data exists, otherwise set to null
   }
+
+  async getUserReviews() {
+    this.isLoading = true;
+  
+    if (!this.userData || !this.userData.id) {
+      console.warn('User ID not found');
+      this.isLoading = false;
+      return;
+    }
+  
+    const userId = this.userData.id;
+  
+    try {
+      // Ambil review berdasarkan user_id
+      const reviewsData = await this.reviewService.getUserReviews(userId).toPromise();
+      console.log('Reviews fetched:', reviewsData);
+  
+      if (reviewsData && Array.isArray(reviewsData)) {
+        this.userReviews = reviewsData;
+      } else {
+        console.error('Invalid response format:', reviewsData);
+        this.userReviews = [];
+      }
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+      this.userReviews = [];
+    } finally {
+      this.isLoading = false;
+    }
+  }
+  
+  
+  
+  
+
+  getStarArray(rating: number): number[] {
+    return Array(rating).fill(0);
+  }
+  
 
   async presentAlert(header: string, message: string, response: any) {
     const alert = await this.alertController.create({

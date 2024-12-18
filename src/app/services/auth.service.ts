@@ -32,11 +32,27 @@ export class AuthService {
     return this.http.post(`${this.authURL()}/login`, data);
   }
 
+  // Fetch user profile
+  getUserProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.authURL()}/user-profile`, { headers });
+  }
+
+  // Update user profile
+// Dalam auth.service.ts, sesuaikan URL
+updateUserProfile(profileData: any): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.put(`${this.authURL()}/user-profile`, profileData, { headers });
+}
+
   // Check if user is authenticated
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     return !!token;
   }
+
   // Logout
   async logout() {
     await this._storage?.remove('token');

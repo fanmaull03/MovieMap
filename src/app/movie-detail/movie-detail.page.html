@@ -15,21 +15,16 @@
       alt="{{ movieDetails.title }}"
       class="poster-img"
     ></ion-img>
-
     <ion-card-header class="movie-header">
       <ion-card-title>{{ movieDetails.title }}</ion-card-title>
-      <ion-card-subtitle
-        >{{ movieDetails.release_date | date: 'yyyy' }}</ion-card-subtitle
-      >
+      <ion-card-subtitle>{{ movieDetails.release_date | date: 'yyyy' }}</ion-card-subtitle>
     </ion-card-header>
-
     <ion-card-content class="movie-details">
       <p><strong>Genre:</strong> {{ getGenres() }}</p>
       <p><strong>Runtime:</strong> {{ getRuntime() }}</p>
-      <p>
-        <strong>Production Companies:</strong> {{ getProductionCompanies() }}
-      </p>
+      <p><strong>Production Companies:</strong> {{ getProductionCompanies() }}</p>
       <p><strong>Overview:</strong> {{ movieDetails.overview }}</p>
+      
       <!-- Add to Watchlist Button -->
       <ion-button
         expand="block"
@@ -37,13 +32,22 @@
         (click)="addWatchlist()"
         class="add-watchlist-btn"
       >
-        <ion-icon name="bookmark-outline" slot="start"></ion-icon>
-        Add to Watchlist
+        <ion-icon name="bookmark-outline" slot="start"></ion-icon> Add to Watchlist
+      </ion-button>
+
+      <!-- Add to Favorite Button -->
+      <ion-button
+        expand="block"
+        color="danger"
+        (click)="addFavorite()"
+        class="add-favorite-btn"
+      >
+        <ion-icon name="heart-outline" slot="start"></ion-icon> Add to Favorite
       </ion-button>
     </ion-card-content>
   </ion-card>
 
-  <!-- Review Form -->
+  <!-- Review Form --> 
   <ion-card>
     <ion-card-header>
       <ion-card-title>Submit Your Review</ion-card-title>
@@ -51,27 +55,24 @@
     <ion-card-content>
       <!-- Rating with Stars -->
       <div class="star-rating">
-        <ion-icon
-          *ngFor="let star of stars; let i = index"
-          name="{{ i < newReview.rating ? 'star' : 'star-outline' }}"
-          (click)="setRating(i + 1)"
-          class="star-icon"
+        <ion-icon 
+          *ngFor="let star of stars; let i = index" 
+          name="{{ i < newReview.rating ? 'star' : 'star-outline' }}" 
+          (click)="setRating(i + 1)" 
+          class="star-icon" 
           [class.filled]="i < newReview.rating"
         ></ion-icon>
       </div>
-
       <!-- Comment Input -->
       <ion-item class="movie-comment">
         <ion-label position="floating">Comment</ion-label>
-        <ion-textarea
-          [(ngModel)]="newReview.comment"
-          rows="4"
+        <ion-textarea 
+          [(ngModel)]="newReview.comment" 
+          rows="4" 
           required
         ></ion-textarea>
       </ion-item>
-      <ion-button expand="full" (click)="submitReview()"
-        >Submit Review</ion-button
-      >
+      <ion-button expand="full" (click)="submitReview()">Submit Review</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -84,9 +85,9 @@
       <ion-card-content>
         <ion-list *ngIf="reviews.length > 0" class="reviews-list">
           <ion-item *ngFor="let review of reviews" class="review-item">
-            <ion-icon
-              name="person-circle-outline"
-              slot="start"
+            <ion-icon 
+              name="person-circle-outline" 
+              slot="start" 
               color="tertiary"
             ></ion-icon>
             <ion-label>
@@ -100,8 +101,7 @@
                 </ng-container>
               </p>
               <p>
-                <strong>Created At:</strong> {{ review.created_at |
-                date: 'medium' }}
+                <strong>Created At:</strong> {{ review.created_at | date: 'medium' }}
               </p>
             </ion-label>
           </ion-item>

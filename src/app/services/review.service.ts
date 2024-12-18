@@ -18,4 +18,9 @@ export class ReviewService {
   getReview($id: any): Observable<any> {
     return this.http.get(`${this.reviewURL()}/` + $id);
   }
+
+  getUserReviews(userId: any): Observable<any> {
+    return this.http.get(`${this.reviewURL()}/user/` + userId);
+  }
+  
 }

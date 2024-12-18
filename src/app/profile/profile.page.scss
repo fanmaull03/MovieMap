@@ -284,3 +284,40 @@ ion-alert .alert-head {
   color: #ffcc00; /* Warna emas */
 }
 
+.profile-card {
+  text-align: center;
+}
+
+.bio {
+  font-size: 1rem;
+  color: gray;
+  margin-top: 0.5rem;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: darkgray;
+}
+
+.empty-reviews,
+.empty-watchlist {
+  text-align: center;
+  color: gray;
+}
+
+.watchlist-img {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.watchlist-item,
+.review-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.item-info {
+  flex: 1;
+}
