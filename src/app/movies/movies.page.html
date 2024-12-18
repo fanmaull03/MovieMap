@@ -35,7 +35,12 @@
   <div>
     <ion-title class="populer">Popular Right Now</ion-title>
   </div>
-
+<!-- Loading Spinner or Message -->
+<div *ngIf="loading" class="loading-spinner">
+  <p>Loading popular movies...</p>
+  <!-- You can use any loading spinner here, for example: -->
+  <ion-spinner name="dots"></ion-spinner>
+</div>
   <!-- Movie List -->
   <ion-grid *ngIf="movies.length > 0">
     <ion-row>

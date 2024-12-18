@@ -11,6 +11,7 @@ export class MoviesPage implements OnInit {
   query: string = '';
   movies: any[] = [];
   error: string = '';
+  loading: boolean = false; // New loading flag
 
   constructor(private tmdbService: TmdbService, private router: Router) {}
 
@@ -47,9 +48,11 @@ export class MoviesPage implements OnInit {
   // Method to fetch popular movies from TMDB
   getPopularMovies() {
     console.log('Fetching popular movies...');
+    this.loading = true; // Set loading to true while fetching
     this.tmdbService.getPopularMovies().subscribe(
       (response) => {
         console.log('Response received:', response);
+        this.loading = false; // Set loading to false once the response is received
         if (response.results && response.results.length > 0) {
           this.movies = response.results;
           this.error = '';
@@ -60,6 +63,7 @@ export class MoviesPage implements OnInit {
       },
       (err) => {
         console.error('Error fetching movies:', err);
+        this.loading = false; // Set loading to false in case of error
         this.error = 'Failed to fetch movies. Please try again later.';
       }
     );
