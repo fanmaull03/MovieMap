@@ -70,32 +70,28 @@
         </ion-segment-content>
 
         <!-- Reviews Section -->
-        <ion-segment-content id="reviews">
-          <div *ngIf="userReviews && userReviews.length > 0; else noReviews">
-            <h3>Your Reviews</h3>
-            <ion-list>
-              <ion-item *ngFor="let review of userReviews">
-                <ion-label>
-                  <h2> {{ review.movieName }}</h2>
-                  <p>
-                    <strong>Rating:</strong>
-                    <ng-container *ngFor="let star of getStarArray(review.rating)">
-                      <ion-icon name="star" color="warning"></ion-icon>
-                    </ng-container>
-                  </p>
-                  <p><strong>Comment:</strong> {{ review.comment }}</p>
-                </ion-label>
-              </ion-item>
-            </ion-list>
-          </div>
-          <ng-template #noReviews>
-            <div class="empty-reviews">
-              <h3>No Reviews Available</h3>
-              <p>You haven't submitted any reviews yet.</p>
-            </div>
-          </ng-template>
-        </ion-segment-content>
-           
+       <!-- Reviews Section -->
+<ion-segment-content id="reviews">
+  <div class="reviews-container" *ngIf="userReviews && userReviews.length > 0; else noReviews">
+    <h3 class="reviews-header">Your Reviews</h3>
+    <ion-list>
+      <div class="review-item" *ngFor="let review of userReviews">
+        <h4 class="review-movie-title">{{ review.movieName }}</h4>
+        <div class="review-rating">
+          <ion-icon name="star" color="warning" *ngFor="let star of getStarArray(review.rating)"></ion-icon>
+        </div>
+        <p class="review-comment"><strong>Comment:</strong> {{ review.comment }}</p>
+      </div>
+    </ion-list>
+  </div>
+  <ng-template #noReviews>
+    <div class="empty-reviews">
+      <h3>No Reviews Available</h3>
+      <p>You haven't submitted any reviews yet.</p>
+    </div>
+  </ng-template>
+</ion-segment-content>
+
 
 
 
