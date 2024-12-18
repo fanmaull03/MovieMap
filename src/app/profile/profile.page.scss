@@ -2,6 +2,7 @@ ion-content{
   --background:  #1a1a1a ;
 }
 .profile-header {
+  padding: 1em;
   text-align: center;
   background: var(--theme-background); /* Latar belakang gelap */
   border-bottom: 1px solid #333;
@@ -109,6 +110,9 @@ ion-header {
   white-space: normal; /* Biarkan judul turun ke baris berikutnya jika panjang */
   overflow: hidden;
   text-overflow: ellipsis;
+}
+#watchlist > div > ul {
+  padding: 0.5em !important;
 }
 
 .film-overview {
@@ -319,6 +323,15 @@ ion-alert .alert-head {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+ion-item::part(native) {
+  background-color: #1a1a1a !important;
+  color: #ffcc00;
+  padding: 1em;
+}
+#reviews > div > ion-list{
+  padding: 0;
 }
 
 .item-info {

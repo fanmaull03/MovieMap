@@ -140,6 +140,9 @@ ion-card-subtitle {
   border-radius: 10px;
   border: 2px solid #ffcc00; /* Border emas di sekitar section */
 }
+ion-item::part(native) {
+  background-color: #1a1a1a !important;
+}
 
 /* Review Item Styling */
 .review-item {
@@ -168,7 +171,9 @@ ion-card-subtitle {
   margin-bottom: 5px;
   color: #ffcc00; /* Nama pengguna berwarna emas */
 }
-
+.reviews-section ion-list{
+  padding: 0;
+}
 
 .review-item ion-label p {
   margin: 5px 0;
