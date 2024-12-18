@@ -232,7 +232,6 @@ export class ProfilePage {
       console.warn('User data not available after initialization.');
     }
   }
-  
 
   // Load detailed film data based on the watchlist's id_film
   async loadFilmDetails(filmIds: string[]) {
