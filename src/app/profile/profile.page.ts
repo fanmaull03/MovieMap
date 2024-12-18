@@ -6,41 +6,105 @@ import { WatchlistService } from '../services/watchlist.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { TmdbService } from '../services/tmdb.service';
 import { ReviewService } from '../services/review.service';
+import { AuthService } from '../services/auth.service';
+import { FavoriteService } from '../services/favorite.service';
+import { firstValueFrom } from 'rxjs';
+
+interface FavoriteResponse {
+  message: string;
+  data: string[];
+}
 
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss'],
 })
+
+
 export class ProfilePage {
   userData: any; // Variable to hold user data
   watchlist: any[] = []; // Store watchlist films
   userReviews: any[] = [];
   isLoading: boolean = false;
+  favorite: any[] =[];
 
   constructor(
     private loadingController: LoadingController,
     private watchlistService: WatchlistService,
     private tmdbService: TmdbService,
     private reviewService: ReviewService,
+    private authService: AuthService,
     private http: HttpClient, 
     private router: Router,
+    private favoriteService: FavoriteService,
     private alertController: AlertController, // Tambahkan alert controller
   ) {
-    this.loadUserData(); // Load user data on component initialization
-    this.getWatchlist(); // Get watchlist data as soon as the component is initialized
+    this.loadUserData();
+    this.getFavorites();
     this.getUserReviews();
+    this.getWatchlist(); // Load user data on component initialization
   }
 
-  loadUserData() {
-    const data = localStorage.getItem('user'); // Retrieve user data from localStorage
-    console.log('User Data:', data); // Debug log to check if user data is retrieved correctly
-    this.userData = data ? JSON.parse(data) : null; // Parse JSON if data exists, otherwise set to null
+  async loadUserData() {
+    try {
+      const response = await this.authService.getUserProfile().toPromise(); // Ambil data dari API
+      if (response) {
+        this.userData = response; // Simpan data ke userData
+        console.log('User Data berhasil dimuat:', this.userData); // Debug log
+      } else {
+        console.warn('Data pengguna tidak ditemukan dalam respons.');
+        this.userData = null;
+      }
+    } catch (error) {
+      console.error('Gagal memuat data pengguna:', error);
+      this.userData = null;
+    }
   }
-
+  
+  
   async getUserReviews() {
     this.isLoading = true;
   
+    try {
+      // Ambil reviews
+      const reviewsData = await this.reviewService.getUserReviews(this.userData.id).toPromise();
+  
+      // Ambil detail film untuk setiap review
+      const reviewsWithMovieDetails = await Promise.all(
+        reviewsData.map(async (review: { film_id: string; }) => {
+          try {
+            // Ambil detail film berdasarkan movie_id
+            const movieDetails = await this.tmdbService.getMovieDetails(review.film_id).toPromise();
+            
+            // Tambahkan nama film ke review
+            return {
+              ...review,
+              movieName: movieDetails.title || 'Unknown Movie'
+            };
+          } catch (error) {
+            console.error(`Error fetching movie details for ID ${review.film_id}:`, error);
+            return {
+              ...review,
+              movieName: 'Unknown Movie'
+            };
+          }
+        })
+      );
+      // Update daftar review
+      this.userReviews = reviewsWithMovieDetails;
+    } catch (error) {
+      console.error('Error in getUserReviews:', error);
+      this.userReviews = [];
+    } finally {
+      this.isLoading = false;
+    }
+  }
+  
+  async getFavorites() {
+    this.isLoading = true;
+    console.log(this.userData);
+    
     if (!this.userData || !this.userData.id) {
       console.warn('User ID not found');
       this.isLoading = false;
@@ -48,30 +112,35 @@ export class ProfilePage {
     }
   
     const userId = this.userData.id;
-  
     try {
-      // Ambil review berdasarkan user_id
-      const reviewsData = await this.reviewService.getUserReviews(userId).toPromise();
-      console.log('Reviews fetched:', reviewsData);
+      const response = await firstValueFrom(
+        this.favoriteService.getFavorites(userId)
+      ) as FavoriteResponse;
   
-      if (reviewsData && Array.isArray(reviewsData)) {
-        this.userReviews = reviewsData;
+      console.log('Raw Favorites Response:', response); // Tambahkan logging
+  
+      if (response && Array.isArray(response.data)) {
+        const filmIds: string[] = response.data;
+        console.log('Favorite Film IDs:', filmIds); // Logging film IDs
+  
+        // Ambil detail film untuk setiap ID favorit
+        const favoriteFilmsPromises = filmIds.map(id => 
+          this.tmdbService.getMovieDetails(id).toPromise()
+        );
+  
+        this.favorite = await Promise.all(favoriteFilmsPromises);
+        console.log('Favorite Films Details:', this.favorite);
       } else {
-        console.error('Invalid response format:', reviewsData);
-        this.userReviews = [];
+        console.error('Invalid favorites response:', response);
+        this.favorite = [];
       }
     } catch (error) {
-      console.error('Error fetching reviews:', error);
-      this.userReviews = [];
+      console.error('Error fetching favorites:', error);
+      this.favorite = [];
     } finally {
       this.isLoading = false;
     }
   }
-  
-  
-  
-  
-
   getStarArray(rating: number): number[] {
     return Array(rating).fill(0);
   }
@@ -153,14 +222,17 @@ export class ProfilePage {
     }
   }
 
-  ngOnInit() {
-    // Muat ulang data pengguna
-    this.loadUserData();
-    // Pastikan data dimuat sebelum mengambil watchlist
+  async ngOnInit() {
+    await this.loadUserData(); // Wait for user data to load
     if (this.userData && this.userData.id) {
-      this.getWatchlist();
+      this.getWatchlist(); // Fetch the watchlist after userData is available
+      this.getUserReviews(); // Fetch user reviews after userData is available
+      this.getFavorites(); // Now we can safely call getFavorites
+    } else {
+      console.warn('User data not available after initialization.');
     }
   }
+  
 
   // Load detailed film data based on the watchlist's id_film
   async loadFilmDetails(filmIds: string[]) {
@@ -230,4 +302,35 @@ export class ProfilePage {
 
     await alert.present(); // Tampilkan alert konfirmasi
   }
+  async removeFavorite(movieId: string) {
+    // Show the loading spinner
+    const loading = await this.loadingController.create({
+      message: 'Removing from favorites...',
+    });
+    await loading.present();
+  
+    // Check if user data is available
+    if (!this.userData || !this.userData.id) {
+      console.warn('User data or User ID not found');
+      await loading.dismiss(); // Dismiss loading if no user data
+      return;
+    }
+  
+    const userId = this.userData.id;
+  
+    try {
+      // Remove the film from the favorites via the service
+      const response = await this.favoriteService.deleteFavorite(userId, movieId).toPromise();
+      await this.presentAlert('Success', 'Movie removed from favorites:', response);
+  
+      // Update the local favorite list by filtering out the removed film
+      this.favorite = this.favorite.filter(film => film.id !== movieId);
+      console.log('Updated Favorites:', this.favorite);
+    } catch (error) {
+      console.error('Error removing movie from favorites:', error);
+    } finally {
+      await loading.dismiss(); // Dismiss the loading spinner after the operation completes
+    }
+  }
+  
 }

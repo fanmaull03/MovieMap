@@ -32,7 +32,7 @@
 
       <ion-segment value="profile" class="profile-segment">
         <ion-segment-button value="profile" content-id="profile">
-          Profile
+          Favorites
         </ion-segment-button>
         <ion-segment-button value="reviews" content-id="reviews">
           Reviews
@@ -45,15 +45,28 @@
       <ion-segment-view>
         <!-- Profile Section -->
         <ion-segment-content id="profile">
-          <div class="content-section">
-            <h3>Favorite Films</h3>
-            <p>
-              Don’t forget to select your
-              <a [routerLink]="['/edit-profile']" class="edit-link">favorite films!</a>
-            </p>
-            <h3>Recent Activity</h3>
-            <div class="empty-activity">No recent activity available.</div>
+          <div *ngIf="favorite && favorite.length > 0; else noFavorite">
+            <ion-grid>
+              <ion-row>
+                <ion-col size-xs="6" size-sm="4" size-md="3" size-lg="2" *ngFor="let film of favorite">
+                  <div class="favorite-card">
+                    <ion-img [src]="'https://image.tmdb.org/t/p/w500/' + film.poster_path" alt="{{ film.title }}"></ion-img>
+                    <div class="favorite-details">
+                      <h4 class="film-title">{{ film.title }}</h4>
+                      <p class="film-overview">{{ film.overview }}</p>
+                      <ion-button (click)="removeFavorite(film.id)" color="danger" size="small">Remove</ion-button>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </div>
+          <ng-template #noFavorite>
+            <div class="empty-favorite">
+              <h3>No items in your favorite</h3>
+              <p>Your favorite is empty.</p>
+            </div>
+          </ng-template>
         </ion-segment-content>
 
         <!-- Reviews Section -->
@@ -63,7 +76,7 @@
             <ion-list>
               <ion-item *ngFor="let review of userReviews">
                 <ion-label>
-                  <h2>Movie ID: {{ review.film_id }}</h2>
+                  <h2> {{ review.movieName }}</h2>
                   <p>
                     <strong>Rating:</strong>
                     <ng-container *ngFor="let star of getStarArray(review.rating)">
